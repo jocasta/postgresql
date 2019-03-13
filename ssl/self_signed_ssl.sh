@@ -1,4 +1,4 @@
-##!/bin/bash
+#!/bin/bash
 
 ## This is not the first time I’ve struggled getting SSL certificate validation to work,
 ## so I thought this time I better write down how I did to avoid future time-waste.
