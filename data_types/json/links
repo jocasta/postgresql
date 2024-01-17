@@ -1,0 +1,3 @@
+
+# JSON in PostgreSQL: Revolutionizing Data Flexibility in Your Database
+https://www.highgo.ca/2024/01/15/json-in-postgresql-revolutionizing-data-flexibility-in-your-database/
