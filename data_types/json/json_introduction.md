@@ -1,4 +1,3 @@
-Certainly! Here's your provided text formatted in markdown:
 
 # Introduction
 In this blog, we’ll go over PostgreSQL’s implementation and handling of JSON objects. Having some experience with Linux, Postgres, and JSON is necessary as we’ll not only be going over these new features but also how to implement them. This blog was written using PostgreSQL 16 (Development Version) running on Ubuntu 23.04. First, I’ll go over some background on JSON as a short refresher, then move on to how we use JSON in Postgres, followed by what helpful functions we can use to interact with JSON objects.
