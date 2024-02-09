@@ -1,0 +1,53 @@
+-- Suppress output during configuration (re-enabled at bottom of this file)
+\set QUIET 1
+
+-- Set client encoding to UTF8 (to match what is on the server)
+\encoding UTF8
+
+-- Verbose feedback
+\set VERBOSITY verbose
+
+-- Custom prompt
+-- \set PROMPT1 '%033[38;5;27m%n%033[m %033[37mat%033[m %033[38;5;39m%m:%>%033[m %033[37min%033[m %033[38;5;76m%/%033[m \npsql%# '
+
+-- Make history ignore all lines entered that were preceded by spaces, and ignore any entries that matched the previous line entered.
+\set HISTCONTROL ignoreboth
+
+-- Keep a different history file for each database name you log on to.
+\set HISTFILE ~/.psql_history- :DBNAME
+
+-- Keep a history of the last 2000 commands.
+\set HISTSIZE 2000
+
+-- Autocomplete keywords (like SELECT) in upper-case, even if you started
+-- typing them in lower case.
+\set COMP_KEYWORD_CASE upper
+
+-- Instead of displaying nulls as blank space, which look the same as empty strings (but are not the same!), show nulls as [NULL].
+\pset null '(null)'
+
+-- Switch to line-based record output when row gets too long
+\pset expanded auto
+
+-- Show pretty unicode lines between rows and columns in select results.
+\pset linestyle unicode
+
+-- Show pretty lines around the outside of select results.
+\pset border 2
+
+-- Use less for browsing data
+\pset pager on
+
+-- Less configuration: ignore case, show percentage viewed, 4-space tab stops, don't page for short results
+\setenv LESS -imx4F
+
+\pset format wrapped
+
+-- See https://thoughtbot.com/blog/an-explained-psqlrc
+\set ON_ERROR_ROLLBACK interactive
+
+-- Upper-case keywords on auto completion
+\set COMP_KEYWORD_CASE upper
+
+-- Re-enable informational output
+\set QUIET 0

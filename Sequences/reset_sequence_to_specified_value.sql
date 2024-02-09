@@ -1,0 +1,1 @@
+SELECT setval('pegadata.report_event_seq', 2000000, true);
