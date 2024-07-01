@@ -26,47 +26,16 @@ You can set the **REPLICA IDENTITY** per table manually, either to an existing u
 
 This SQL can be used to find tables that are set to use the default replica identity but don't have a primary key (i.e., they don't have a valid replica identity after all):
 
-```sql
--- FIRST SET THE SEARCH PATH TO ALL YOUR SCHEMAS
--- EXAMPLE: 
-
-set search_path = pegadata, pegarules, public ;
-
-```
-
-
-```sql
-WITH tables_no_pkey AS (
-    SELECT tbl.table_schema, tbl.table_name
-    FROM information_schema.tables tbl
-    WHERE table_type = 'BASE TABLE'
-        AND table_schema NOT IN ('pg_catalog', 'information_schema')
-        AND NOT EXISTS (
-            SELECT 1 
-            FROM information_schema.key_column_usage kcu
-            WHERE kcu.table_name = tbl.table_name 
-                AND kcu.table_schema = tbl.table_schema
-        )
-)
-SELECT pgc.relnamespace, table_name::regclass, pgc.relreplident
-FROM tables_no_pkey 
-INNER JOIN pg_class as pgc
-ON table_name::regclass::oid = pgc.oid
-WHERE relreplident = 'd'
-order by 1,2,3 ;
--- d = default
-```
+This SQL will tell you replication Identities for tables: [replication_indentiy](sql/replication_identity.sql)
 
 
 ### OPTIONS
 
-  - The Easiest Option is to make sure every table has a **primary key**
+  - The Easiest Option is to make sure every table has a **primary key** - but for some applications this may not be trivial
 
-Maybe we should give every table a primary key? IIRC that would have been useful elsewhere, e.g. #15583
+One thing to note is that tables might have unique indices already. In Postgres, those can be converted for free with:
 
-Agreed but may not be trivial. I would hope that all new tables we create have primary keys.
-
-One thing to note is that many of these tables probably have worthy unique indices already. In Postgres, those can be converted for free with `ALTER TABLE my_table ADD CONSTRAINT PK_my_table PRIMARY KEY USING INDEX my_index;` (TIL!) but I'm not sure what we can do about SQLite 
+ `ALTER TABLE my_table ADD CONSTRAINT PK_my_table PRIMARY KEY USING INDEX my_index;`
 
 
 ### (2) Sequences
@@ -74,3 +43,11 @@ One thing to note is that many of these tables probably have worthy unique indic
 * Inbuilt Logical replication does not replicate sequence data
 * **IMPORTANT !!!!** - if using this for a mjor upgrade - before switching application to point at the new DB make sure the sequences have been reset to the appropriate value
 * e.g. >   SELECT setval('pegadata.report_event_seq', 30000000, true); 
+
+This SQL will generate SQL to restart sequences for tables:
+
+(1) Reset to specific value: [specified_value](../Sequences/reset_sequence_to_specified_value.sql)
+
+(2) Reset to next value: [next_value](../Sequences/reset_sequences_nextval.sql)
+
+(3) Reset to sequence ownership: [ownership](../Sequences/reset_sequence_to_specified_value.sql)
