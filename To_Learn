@@ -1,0 +1,22 @@
+
+* Partitioning (pg_partman)
+
+* TimeSeries (TimeScaleDB)
+
+* Distributed (Citus)
+
+* Procedural Language (PL/pgSQL)
+
+* Explain Analyze
+
+* Flyway (Schema Migrations)
+
+* pg_cron
+
+* pg_stat_statements
+
+* HA Patroni
+
+* Connection pooling (pgBouncer & RDS Proxy)
+
+* log forwarding > OpenSearch / ElasticSearch

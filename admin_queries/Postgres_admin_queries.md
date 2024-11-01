@@ -110,5 +110,6 @@ List tables by their size in PostgreSQL database
 List tables by the size of data and indexes in PostgreSQL database
 List 10 largest tables in PostgreSQL database
 List tables that take up 50% of space in PostgreSQL database
+list tables and the percentage space fo the database
 Schema compare
 Compare tables and columns in two schemas in PostgreSQL database
