@@ -1,0 +1,18 @@
+
+
+## PG-PEDIA
+https://pgpedia.info/index.html
+
+
+
+
+
+
+
+## BLOGS
+
+
+## AWS DATABASE
+https://aws.amazon.com/blogs/database/category/database/amazon-aurora/
+
+https://aws.amazon.com/blogs/database/

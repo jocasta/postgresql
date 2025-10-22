@@ -21,6 +21,8 @@ SELECT
     heap_blks_total,
     heap_blks_scanned,
     heap_blks_vacuumed,
+    round(100.0 * heap_blks_scanned / NULLIF(heap_blks_total, 0), 2) AS pct_scanned,
+    round(100.0 * heap_blks_vacuumed / NULLIF(heap_blks_total, 0), 2) AS pct_vacuumed,
     index_vacuum_count,
     max_dead_tuples,
     num_dead_tuples
