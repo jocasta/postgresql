@@ -1,0 +1,22 @@
+
+
+CAP Theorum
+
+2 Generals problem
+
+synchronous / asynchronous
+
+Sharding
+
+Partitioning
+
+referential integrity - foreign keys
+
+Indexes strategies
+
+
+Tuning Postgres for Heavy Writes
+
+Tuning Postgres for Heavy Reads
+
+pgBouncer
