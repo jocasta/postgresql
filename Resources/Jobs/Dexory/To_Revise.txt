@@ -20,3 +20,7 @@ Tuning Postgres for Heavy Writes
 Tuning Postgres for Heavy Reads
 
 pgBouncer
+
+Prepared statements
+
+Stored Procedures
