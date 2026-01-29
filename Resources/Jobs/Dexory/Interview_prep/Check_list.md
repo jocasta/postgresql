@@ -198,6 +198,7 @@ They want to hear:
 * Indexes are not free
 * Measurement-based decisions
 * Periodic pruning
+* Rebuild concurrently
 
 ---
 
@@ -223,6 +224,8 @@ They want:
 * Trade-off explanation
 * Outcome focus, not ego
 
+* Sizing CPU / RAM incorrectly rather than tuning properly
+
 ---
 
 ## 3. Smart questions *you* should ask them
@@ -234,6 +237,14 @@ These matter — senior candidates are evaluated on this.
 * “What are your fastest-growing tables today, and what drives that growth?”
 * “Is your workload primarily append-only, or do you have heavy updates?”
 * “How close are you to Postgres becoming a bottleneck today?”
+
+### Current deployment:
+
+* on-prem / cloud
+* Containers / VMs 
+* OS
+* Clustered? Replicas
+* Auto Failover? 
 
 ### About architecture direction
 

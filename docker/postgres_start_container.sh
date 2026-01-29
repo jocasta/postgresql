@@ -128,4 +128,4 @@ echo "  ls -lah ${LOGS_DIR}"
 echo
 echo "Enable extensions (one-time per database):"
 echo "  psql -h localhost -p ${HOST_PORT} -U ${DB_USER} -d postgres -c \"CREATE EXTENSION IF NOT EXISTS pg_cron;\""
-echo "  psql -h localhost -p ${HOST_PORT} -U ${DB_USER} -d ${DB_NAME} -c \"CREATE EXTENSION IF NOT EXISTS pg_partman;\""
+echo "  psql -h localhost -p ${HOST_PORT} -U ${DB_USER} -d ${DB_NAME} -c \"CREATE SCHEMA IF NOT EXISTS partman ; CREATE EXTENSION IF NOT EXISTS pg_partman SCHEMA partman ;\""
