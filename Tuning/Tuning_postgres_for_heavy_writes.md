@@ -52,3 +52,19 @@ Beyond config settings, how you send the data matters:
 * **Unlogged Tables:** If you have temporary staging data that doesn't need to survive a crash, use `CREATE UNLOGGED TABLE`. These bypass the WAL entirely and are incredibly fast.
 
 ---
+
+### Summary Table: Tuning for Heavy Writes (Ingestion & Data Loading)
+
+The goal here is to reduce the "friction" of saving data to disk and minimize the impact of maintenance tasks.
+
+| Parameter | Recommended Value | Why it helps |
+| --- | --- | --- |
+| **`synchronous_commit`** | **`off`** | **The biggest boost.** The DB doesn't wait for a slow disk "confirm" before moving to the next write. |
+| **`max_wal_size`** | **16GB - 64GB** | Allows more data to be written before a "checkpoint" is forced, reducing massive I/O spikes. |
+| **`checkpoint_timeout`** | **15min - 30min** | Spreads out the work of flushing data to disk over a longer period. |
+| **`checkpoint_completion_target`** | **0.9** | Spreads the checkpoint write load across 90% of the timeout interval to stay "smooth." |
+| **`wal_buffers`** | **16MB - 64MB** | Provides a larger buffer for incoming write logs before they must be flushed to the WAL files. |
+| **`autovacuum_vacuum_scale_factor`** | **0.01 - 0.05** | Triggers cleanup after 1% or 5% of data changes (instead of 20%), preventing massive "bloat." |
+| **`maintenance_work_mem`** | **1GB - 2GB** | Speeds up the internal processes that clean the database and rebuild indexes after large loads. |
+
+---

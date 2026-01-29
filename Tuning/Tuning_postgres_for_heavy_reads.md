@@ -71,6 +71,15 @@ FROM pg_statio_user_tables;
 
 ```
 
----
+### Summary Table: Tuning for Heavy Reads (Analytics & Reporting)
 
-**Next Step:** Are your read queries mostly "Point Lookups" (finding one specific row) or "Analytical Aggregations" (calculating sums/averages over millions of rows)? The tuning for those two is quite different.
+The goal here is to keep data in memory and enable the CPU to crunch large datasets in parallel.
+
+| Parameter | Recommended Value | Why it helps |
+| --- | --- | --- |
+| **`shared_buffers`** | **25% - 40% of RAM** | Increases the "cache" so Postgres finds data in RAM instead of hitting the disk. |
+| **`effective_cache_size`** | **75% of total RAM** | Helps the query planner realize there is a lot of OS-level cache available, favoring index scans. |
+| **`work_mem`** | **64MB - 256MB+** | Memory for sorting and joins. High values prevent queries from "spilling" to slow disk-based temp files. |
+| **`max_parallel_workers_per_gather`** | **4 to 8** | Allows a single query to use multiple CPU cores to scan large tables or aggregate data. |
+| **`random_page_cost`** | **1.1** | (For SSDs) Tells the engine that random disk access is fast, making it use indexes more aggressively. |
+| **`cursor_tuple_fraction`** | **1.0** | Tells the planner you likely want *all* rows of a query (typical for reports) rather than just the first few. |
