@@ -1,4 +1,22 @@
 
+A good internal mantra:
+
+“First: make it safe.
+Second: make it predictable.
+Third: make it scalable.”
+
+
+-------------------------------------------------------------------------------------------------
+
+* Data ingestion - how is data written to the DB
+
+* Vacuuming
+
+* transaction wraparound
+
+
+-------------------------------------------------------------------------------------------------
+
 
 * WRITE DOWN THE DATA STRUCTURE - SO IF YOU GET THE JOB YOU CAN PREPARE
 
@@ -41,13 +59,6 @@ WHAT WOULD YOU DO ON DAY ONE:
                - table sizes
 
 --------------------------------------------------------------------------------------------
-
-A good internal mantra:
-
-“First: make it safe.
-Second: make it predictable.
-Third: make it scalable.”
-
 
 --------------------------------------------------------------------------------------------
 
