@@ -1,0 +1,94 @@
+select customer_id
+from orders ;
+
+select count(*)
+from orders ;
+
+select sum(customer_id)
+from orders ;
+
+select 
+
+WHERE created_at >= now() - interval '30 days'
+
+---------------------------------------
+
+customers (
+  customer_id bigint,
+  name text
+)
+
+orders (
+  order_id bigint,
+  customer_id bigint,
+  created_at timestamp
+)
+
+
+Return all customers, including those who have never placed an order, 
+with a count of how many orders they have placed.
+
+select customer_id, count(*)
+from customers a 
+left join orders b on a.customer_id = b.customer_id
+group by customer_id ;
+
+
+----
+
+create index customer_id on orders(customer_id) ;
+
+create index created_at_idx on orders(created_at) ;
+
+CREATE INDEX ON orders (customer_id, created_at);
+
+------------------------------------------------------------
+
+
+idle in transaction - timeout
+
+two concrete production problems this causes - 
+
+hogs connections, locks tables / rows 
+
+idle_in_transaction_session_timeout
+
+CREATE INDEX ON events (customer_id, occurred_at DESC);
+
+
+----------------------------------------------------------
+
+
+DELETE FROM events
+WHERE occurred_at < now() - interval '180 days';
+
+DELETE FROM events
+WHERE occurred_at < now() - interval '180 days'
+AND 
+
+
+WITH del AS (
+  SELECT ctid
+  FROM events
+  WHERE occurred_at < now() - interval '180 days'
+  LIMIT 5000
+)
+DELETE FROM events e
+USING del
+WHERE e.ctid = del.ctid;
+
+-----------------------------------------------------------
+
+select * from 
+(
+select row_number() over (partion by customer_id order by created_at desc), *
+from orders
+) foo
+where row_number = 1 ;
+
+orders (
+  order_id bigint,
+  customer_id bigint,
+  created_at timestamptz,
+  total_amount numeric
+)
