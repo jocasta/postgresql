@@ -17,6 +17,8 @@
       * backfilling
       * droping old columns
       * What else?
+      
+* UPSERT
 
 * pgbouncer
 
@@ -59,6 +61,7 @@
      * CTEs
      * Querying JSON
      * Inexes
+     * UPSERT
 
 * pg_Bench
 
