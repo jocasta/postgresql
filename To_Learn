@@ -1,6 +1,8 @@
 
 * Partitioning (pg_partman)
 
+* Stored Procedures
+
 * TimeSeries (TimeScaleDB)
 
 * Distributed (Citus)
@@ -8,6 +10,21 @@
 * Procedural Language (PL/pgSQL)
 
 * Explain Analyze
+
+* Migrations:
+
+      * adding columns
+      * backfilling
+      * droping old columns
+      * What else?
+
+* pgbouncer
+
+* Monitoring postgres:
+
+     * All the stat tables
+     * prometheous
+     * 
 
 * Flyway (Schema Migrations)
 
@@ -20,3 +37,28 @@
 * Connection pooling (pgBouncer & RDS Proxy)
 
 * log forwarding > OpenSearch / ElasticSearch
+
+* Triggers
+
+* Foreign Keys
+
+* Plan a whole SQL refresh:
+
+     Courses / text books
+
+     * Constrainsts
+     * Transactions
+     * windows functions
+     * CTEs
+     * Querying JSON
+     * Inexes
+
+* pg_Bench
+
+* LISTEN / NOTIFIY
+
+* pl/pgsql
+
+* BOOKS:
+
+       - PostgreSQL Mistakes and How to Avoid Them
