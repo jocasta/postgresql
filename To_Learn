@@ -20,6 +20,13 @@
 
 * pgbouncer
 
+* Locks (types / working with)
+
+* Transaction / connection details / status
+
+     - idle
+     - idle-in-transaction
+
 * Monitoring postgres:
 
      * All the stat tables
