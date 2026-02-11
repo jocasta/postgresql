@@ -11,15 +11,18 @@
 
 * Explain Analyze
 
+* pg_repack
+
+* Speeding up SQL Queries
+
 * Migrations:
 
       * adding columns
       * backfilling
       * droping old columns
+      * changing data-types
       * What else?
       
-* UPSERT
-
 * pgbouncer
 
 * Locks (types / working with)
@@ -33,7 +36,9 @@
 
      * All the stat tables
      * prometheous
-     * 
+     * prometheous exporter
+     * link prometheous to grafana
+     * Transaction ID wraparound 
 
 * Flyway (Schema Migrations)
 
@@ -60,7 +65,7 @@
      * windows functions
      * CTEs
      * Querying JSON
-     * Inexes
+     * Indexes
      * UPSERT
 
 * pg_Bench
@@ -72,3 +77,72 @@
 * BOOKS:
 
        - PostgreSQL Mistakes and How to Avoid Them
+       - High Performance PostgreSQL for Rails — Even if you’re not on Rails, it’s strong on explaining performance practices that apply to any workload
+
+
+---
+
+### Crunchy Data Official Resources
+
+Crunchy Data — the company behind Crunchy Bridge — publishes free tutorials and interactive Postgres exercises covering topics from basic SQL to advanced features and performance patterns:
+* ✔ Guided Postgres exercises in your browser (Postgres Playground) — hands-on SQL practice without installing anything.
+* ✔ A wide range of deeper blog tutorials covering RLS, window functions, backup strategies, etc. (good for stay-sharp reading)
+
+These are practical ways to stay sharp even if you’re familiar with everyday Postgres usage.
+
+### 📌 Crunchy Bridge Documentation
+
+Spend some time with the Crunchy Bridge docs and walkthroughs — things like how they handle:
+
+* Automated backups & restores
+
+* High availability and failover
+
+* Connection pooling
+
+* Monitoring & metrics
+These docs are the operational side of working with a managed Postgres platform and often include best practices that differ slightly from self-managed instances.
+
+
+## ⚙️ Hands-On / Practical Projects
+
+Especially as someone moving into a new platform, nothing beats experience:
+
+### ✔ Set Up a Crunchy Bridge Test Cluster
+
+* Deploy a basic instance in AWS/Azure/GCP.
+* Connect with your usual tooling (`psql`, DBeaver, etc.).
+* Practice migrations from a local Postgres instance onto Bridge.
+* Experiment with backups, PITR, read replicas, scaling.
+
+### ✔ Build Performance Scenarios
+
+Use tools like:
+
+* `pgbench` for benchmarking
+* `EXPLAIN (ANALYZE, BUFFERS)` for query performance inspection
+* pg_stat views to understand workload behaviour
+
+These general Postgres skills pay dividends across any managed Postgres platform.
+
+---
+
+## 🚀 Practical Tips for Your Transition
+
+✔ **Cloud mindset over engine differences:** Crunchy Bridge’s value is in automation, reliability, and tooling — the core SQL and engine behaviour is still Postgres.
+✔ **Understand provider quirks:** Compare how Bridge handles auth/roles, backups, and scaling versus your Aurora experience.
+✔ **Join the community:** Crunchy Data has tutorials, Slack/Discord communities, and blog posts that keep you connected to real use-cases and patterns. ([Crunchy Data][4])
+
+---
+
+## 🧠 Final Recommendation
+
+Focus on **deep Postgres internals and performance books** *and* complement them with **Crunchy Bridge-specific docs and tutorials**. The books will give you long-term mastery; Bridge content will help you apply that mastery in your new organisation’s stack.
+
+If you want, I can also pull together a tailored learning path (e.g., beginner → intermediate → advanced milestones), including free resources and certification/course suggestions.
+
+[1]: https://www.enterprisedb.com/blog/top-postgrsql-books-for-learning-dbas-developers?utm_source=chatgpt.com "A Review of 4 Top PostgreSQL Books"
+[2]: https://www.postgresql.org/docs/books/?utm_source=chatgpt.com "PostgreSQL: Books"
+[3]: https://www.amazon.co.uk/High-Performance-PostgreSQL-Rails-Maintainable/dp/B0CX876RLY?utm_source=chatgpt.com "High Performance PostgreSQL for Rails: Reliable ..."
+[4]: https://www.crunchydata.com/developers/tutorials?utm_source=chatgpt.com "Postgres Tutorials"
+[5]: https://www.crunchydata.com/blog/topic/postgres-tutorials?utm_source=chatgpt.com "Postgres Tutorials | PostgreSQL Blog"
