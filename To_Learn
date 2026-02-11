@@ -40,6 +40,8 @@
      * link prometheous to grafana
      * Transaction ID wraparound 
 
+* Built in roles (pg_monitor, pg_read_all_data etc)
+
 * Flyway (Schema Migrations)
 
 * pg_cron
@@ -67,6 +69,7 @@
      * Querying JSON
      * Indexes
      * UPSERT
+     * SQL to create schema and define writer, reader roles + DEFAULT Privilidges
 
 * pg_Bench
 
