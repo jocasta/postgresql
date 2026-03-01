@@ -1,0 +1,1 @@
+https://github.com/cybertec-postgresql/pg_squeeze

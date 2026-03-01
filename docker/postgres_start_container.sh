@@ -38,9 +38,9 @@ done
 ###############################################################################
 # Derived values (single source of truth = PG_VERSION)
 ###############################################################################
-PG_MAJOR="${PG_VERSION%%.*}"                 # e.g. 18.1 -> 18
-BASE_IMAGE="postgres:${PG_VERSION}"          # e.g. postgres:18.1
-CUSTOM_IMAGE="my-postgres:${PG_VERSION}"     # e.g. my-postgres:18.1
+PG_MAJOR="${PG_VERSION%%.*}"                   # e.g. 18.1 -> 18
+BASE_IMAGE="postgres:${PG_VERSION}"            # e.g. postgres:18.1
+CUSTOM_IMAGE="test-postgres:${PG_VERSION}"     # e.g. test-postgres:18.1
 
 CONF_FILE="./postgresql.conf"
 LOGS_DIR="./logs"
