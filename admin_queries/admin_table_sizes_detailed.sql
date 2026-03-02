@@ -3,35 +3,51 @@
 
 SELECT
     n.nspname AS schema_name,
-    c.relname AS table_name,
-    pg_size_pretty(pg_relation_size(c.oid)) AS main_table_size, -- This is the size of the main table heap only
+    c.relname AS relation_name,
+
+    c.relkind AS relkind,
+    CASE c.relkind
+        WHEN 'r' THEN 'regular table'
+        WHEN 'p' THEN 'partitioned table'
+        WHEN 'i' THEN 'index'
+        WHEN 'I' THEN 'partitioned index'
+        WHEN 'S' THEN 'sequence'
+        WHEN 't' THEN 'TOAST table'
+        WHEN 'v' THEN 'view'
+        WHEN 'm' THEN 'materialized view'
+        WHEN 'c' THEN 'composite type'
+        WHEN 'f' THEN 'foreign table'
+        WHEN 's' THEN 'special'
+        ELSE 'unknown'
+    END AS relkind_name,
+
+    pg_size_pretty(pg_relation_size(c.oid)) AS main_relation_size, -- heap for tables/matviews; 0 for some relkinds
     pg_size_pretty(pg_indexes_size(c.oid)) AS index_size,
-    COALESCE(pg_size_pretty(pg_total_relation_size(c_toast.oid)), '0 bytes') AS toast_size, -- Calculate toast table size
+    COALESCE(pg_size_pretty(pg_total_relation_size(c_toast.oid)), '0 bytes') AS toast_size,
     pg_size_pretty(pg_total_relation_size(c.oid)) AS combined_size
 FROM
     pg_class c
-LEFT JOIN
+JOIN
     pg_namespace n ON n.oid = c.relnamespace
 LEFT JOIN
-    pg_class c_toast ON c.reltoastrelid = c_toast.oid -- Join to get the TOAST table
+    pg_class c_toast ON c.reltoastrelid = c_toast.oid
 WHERE
-    c.relkind = 'r' -- 'r' for regular tables
-    AND n.nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast') -- Exclude system schemas and the pg_toast schema itself
+    n.nspname NOT IN ('pg_catalog', 'information_schema', 'pg_toast')
 ORDER BY
     pg_total_relation_size(c.oid) DESC
 LIMIT 10;
 
 
 
---  schema_name |          table_name          | main_table_size | index_size | toast_size | combined_size 
--- -------------+------------------------------+-----------------+------------+------------+---------------
---  pegadata    | lr_history_data              | 142 GB          | 45 GB      | 660 GB     | 847 GB
---  pegadata    | lr_data_document             | 8691 MB         | 1683 MB    | 666 GB     | 676 GB
---  pegadata    | pc_data_workattach           | 1232 MB         | 173 MB     | 513 GB     | 514 GB
---  pegadata    | pr_ros_data_log_rest         | 1137 MB         | 187 MB     | 60 GB      | 61 GB
---  pegadata    | lr_work                      | 2332 MB         | 1386 MB    | 48 GB      | 51 GB
---  pegadata    | lr_history_work              | 33 GB           | 16 GB      | 8192 bytes | 50 GB
---  pegadata    | pc_history_ros_fw_regfw_work | 9916 MB         | 4752 MB    | 8192 bytes | 14 GB
---  pegadata    | pr_history                   | 7523 MB         | 3018 MB    | 912 kB     | 10 GB
---  pegadata    | pr_ros_data_search_app       | 610 MB          | 143 MB     | 8157 MB    | 8911 MB
---  pegadata    | lr_data_applicationform      | 826 MB          | 432 MB     | 6960 MB    | 8219 MB
+--    schema_name    | relation_name | relkind | relkind_name  | main_relation_size | index_size | toast_size | combined_size 
+-- ------------------+---------------+---------+---------------+--------------------+------------+------------+---------------
+--  lrs_extract      | audit_log     | r       | regular table | 19 GB              | 25 GB      | 0 bytes    | 44 GB
+--  lrs_extract_beta | audit_log     | r       | regular table | 19 GB              | 25 GB      | 0 bytes    | 44 GB
+--  lrs_extract      | case_notes    | r       | regular table | 15 GB              | 4998 MB    | 8192 bytes | 20 GB
+--  lrs_extract_beta | case_notes    | r       | regular table | 15 GB              | 4998 MB    | 8192 bytes | 20 GB
+--  lrs_extract      | ap_people     | r       | regular table | 13 GB              | 1702 MB    | 8192 bytes | 14 GB
+--  lrs_extract_beta | ap_people     | r       | regular table | 13 GB              | 1702 MB    | 8192 bytes | 14 GB
+--  lrs_extract      | tt_cdebtor    | r       | regular table | 13 GB              | 1052 MB    | 8192 bytes | 14 GB
+--  lrs_extract_beta | tt_cdebtor    | r       | regular table | 13 GB              | 1051 MB    | 8192 bytes | 14 GB
+--  lrs_extract      | tt_bpeople    | r       | regular table | 12 GB              | 1102 MB    | 8192 bytes | 14 GB
+--  lrs_extract_beta | tt_bpeople    | r       | regular table | 12 GB              | 1102 MB    | 8192 bytes | 14 GB

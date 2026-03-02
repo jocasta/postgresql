@@ -11,9 +11,17 @@
 
 * Explain Analyze
 
+<<<<<<< Updated upstream
 * pg_repack
 
 * Speeding up SQL Queries
+=======
+* pg_replack
+
+* Speeding up SQL queires
+
+* 
+>>>>>>> Stashed changes
 
 * Migrations:
 
@@ -38,9 +46,13 @@
      * prometheous
      * prometheous exporter
      * link prometheous to grafana
+<<<<<<< Updated upstream
      * Transaction ID wraparound 
 
 * Built in roles (pg_monitor, pg_read_all_data etc)
+=======
+     * Transaction ID wraparound
+>>>>>>> Stashed changes
 
 * Flyway (Schema Migrations)
 
@@ -68,8 +80,11 @@
      * CTEs
      * Querying JSON
      * Indexes
+<<<<<<< Updated upstream
      * UPSERT
      * SQL to create schema and define writer, reader roles + DEFAULT Privilidges
+=======
+>>>>>>> Stashed changes
 
 * pg_Bench
 
