@@ -26,25 +26,47 @@
 
 ```bash
 
-pg_dump -v \
-  -h em-vrai-pgrd48.ros.alpha.gov.uk -U rosdba \
+time pg_dump -v \
+  -h em-vrai-pgrd48.alpha.ros.gov.uk -p 5432 -U rosdba \
   -d gis \
   -Fd -j 4 \
   --exclude-schema=osmm_archiving \
   --exclude-schema=mapping \
-  -f /db/PostgreSQL/dump_restore/gis_alpha.dmp
+  --no-subscriptions \ 
+-f /db/PostgreSQL/dump_restore/gis_alpha.dmp  2>&1 | tee /db/PostgreSQL/dump_restore/gis_dump.log
 
   ```
 
 ### (3) RESTORE
 
+#### PRE-DATA
 
   ```bash
 
-  pg_restore -v \
-  -U rosdba \
-  -d gis_temp \
-  -Fd -j 4 \
-  /db/PostgreSQL/dump_restore/gis_alpha.dmp
+ time pg_restore -v -U rosdba -d gis_temp \
+--section=pre-data \
+/db/PostgreSQL/dump_restore/gis_alpha.dmp \
+2>&1 | tee /db/PostgreSQL/dump_restore/gis_restore_predata.log 
 
   ```
+
+#### DATA
+
+```bash
+time pg_restore -v -U rosdba \
+-d gis_temp \
+--section=data -j 4 \
+/db/PostgreSQL/dump_restore/gis_alpha.dmp \
+2>&1 | tee /db/PostgreSQL/dump_restore/gis_restore_data.log 
+
+  ```
+
+#### POST-DATA
+
+```BASH
+time pg_restore -v -U rosdba \
+-d gis_temp \
+--section=post-data -j 4 \
+/db/PostgreSQL/dump_restore/gis_alpha.dmp \
+2>&1 | tee /db/PostgreSQL/dump_restore/gis_restore_post_data.log
+```
