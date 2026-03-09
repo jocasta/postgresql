@@ -2,12 +2,13 @@
 ## Non-functional requirements:
 
 * Scalability
-* availability
+* Availability
 * RTO / RPO
 * Performance
 * Observability
 * Accessibility
 * Security
+
 * **how to design for them**
 
 ---
@@ -40,11 +41,11 @@ RESULT
 
 
 
-* Handling technical risk
-* Leading architectural change
+* Handling technical risk 
+* Leading architectural change - Designing the new gitlab runner pipeline upgrades
 * Influencing stakeholders
-* Learning from failure
-* Improving resilience
+* Learning from failure  -  Logical replication migration error (sequences)
+* Improving resilience - shifting all Replica servers to another DC
 
 ---
 
@@ -52,9 +53,9 @@ RESULT
 
 You should prepare **6 reusable stories** you can adapt to almost any question:
 
-* Major migration
-* Production incident
-* Stakeholder disagreement
-* Technical debt reduction
-* Monitoring / observability improvement
-* Team leadership
+* Major migration - Mapping CADMAP
+* Production incident - VMs going down - Sunday Call in
+* Stakeholder disagreement - Engine Class setting 
+* Technical debt reduction - RHEL7 
+* Monitoring / observability improvement - Table Bloat Postgres
+* Team leadership - one on ones / Code-Reviews / Shared Programming / Brainstorming workshops
