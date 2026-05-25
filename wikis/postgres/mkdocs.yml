@@ -30,6 +30,17 @@ extra_css:
 nav:
   - Home: index.md
 
+  - Backup:
+    - Barman: backups/Barman/test.md
+    - pg_dump: backups/pg_dump/basic_dump_restore_pattern.md
+    - Databasus: backups/Databasus/test.md
+
+  - Tuning:
+    - Quick Summary: tuning/Quick_Summary_Table.md
+    - Append-Heavy Workloads: tuning/Tuning_postgres_for_append_heavy_workloads.md
+    - Heavy Reads: tuning/Tuning_postgres_for_heavy_reads.md
+    - Heavy Writes: tuning/Tuning_postgres_for_heavy_writes.md
+
   - Indexes:
     - Overview: indexes/0_Indexing_Overview.md
     - Quick Decision Guide: indexes/0.1_Quick_Decision_Guide.md
@@ -45,8 +56,4 @@ nav:
     - Covering Indexes: indexes/10_Covering_indexes.md
     - Clustering: indexes/11_Clustering_with_indexes.md
 
-  - Tuning:
-    - Quick Summary: tuning/Quick_Summary_Table.md
-    - Append-Heavy Workloads: tuning/Tuning_postgres_for_append_heavy_workloads.md
-    - Heavy Reads: tuning/Tuning_postgres_for_heavy_reads.md
-    - Heavy Writes: tuning/Tuning_postgres_for_heavy_writes.md
+
