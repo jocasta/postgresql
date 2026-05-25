@@ -1,3 +1,6 @@
 
 # Container Logs
 docker/logs
+
+# MkDocs build output
+wikis/*/site/

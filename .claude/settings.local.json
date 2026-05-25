@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install *)",
+      "Bash(git mv *)",
+      "Bash(mkdocs build *)",
+      "Bash(sed -i 's|\\\\.\\\\./Images/|\\\\.\\\\./images/|g' /workspaces/mike-wikis/wikis/postgres/docs/settings/synchronous_commit.md)",
+      "Bash(sed -i 's|\\\\.\\\\./Sequences/|\\\\.\\\\./sequences/|g' /workspaces/mike-wikis/wikis/postgres/docs/replication/Introduction.md)"
+    ]
+  }
+}

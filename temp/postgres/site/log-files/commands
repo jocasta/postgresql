@@ -1,0 +1,13 @@
+
+
+## EXTRACT CONNECTING IPs
+
+grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' combined.log | sort -u
+
+
+## RESOLVE TO HOSTNAME
+
+for f in `grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' combined.log | sort -u`
+do
+nslookup $f
+done

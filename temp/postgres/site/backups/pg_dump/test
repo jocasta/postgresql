@@ -1,0 +1,15 @@
+
+
+### Directory Format
+
+```sh
+time pg_dump -v \
+  -h em-vrai-pgrd48.alpha.ros.gov.uk -p 5432 -U rosdba \
+  -d gis \
+  -Fd -j 4 \
+  --exclude-schema=osmm_archiving \
+  --exclude-schema=mapping \
+  --no-subscriptions \ 
+-f /db/PostgreSQL/dump_restore/gis_alpha.dmp  2>&1 | tee /db/PostgreSQL/dump_restore/gis_dump.log
+```
+

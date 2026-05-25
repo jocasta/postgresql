@@ -1,0 +1,52 @@
+site_name: PostgreSQL Wiki
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.indexes
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+nav:
+  - Home: index.md
+
+  - Indexes:
+    - Overview: indexes/0_Indexing_Overview.md
+    - Quick Decision Guide: indexes/0.1_Quick_Decision_Guide.md
+    - B-Tree: indexes/1_btree_index.md
+    - GiST: indexes/2_gist_index.md
+    - SP-GiST: indexes/3_sp_gist_index.md
+    - GIN: indexes/4_gin_index.md
+    - BRIN: indexes/5_brin_index.md
+    - Bloom: indexes/6_bloom_extension_index.md
+    - RUM: indexes/7_RUM_Extension_advanced_gin.md
+    - Partial Indexes: indexes/8_Partial_Indexes.md
+    - Expression Indexes: indexes/9_Expression_indexes.md
+    - Covering Indexes: indexes/10_Covering_indexes.md
+    - Clustering: indexes/11_Clustering_with_indexes.md
+
+  - Tuning:
+    - Quick Summary: tuning/Quick_Summary_Table.md
+    - Append-Heavy Workloads: tuning/Tuning_postgres_for_append_heavy_workloads.md
+    - Heavy Reads: tuning/Tuning_postgres_for_heavy_reads.md
+    - Heavy Writes: tuning/Tuning_postgres_for_heavy_writes.md

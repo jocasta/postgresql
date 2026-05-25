@@ -1,0 +1,25 @@
+{
+  "name": "mike-wikis",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspaces/mike-wikis",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mike-wikis,type=bind",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${env:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,readonly",
+    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install -e '.[dev]'"
+}
