@@ -11,17 +11,11 @@
 
 * Explain Analyze
 
-<<<<<<< Updated upstream
-* pg_repack
-
-* Speeding up SQL Queries
-=======
 * pg_replack
 
 * Speeding up SQL queires
 
 * 
->>>>>>> Stashed changes
 
 * Migrations:
 
