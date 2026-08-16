@@ -8,7 +8,9 @@
   "remoteUser": "vscode",
   "mounts": [
     "source=${env:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,readonly",
-    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind",
+  "source=${localEnv:HOME}/.claude.json,target=/home/vscode/.claude.json,type=bind"
   ],
   "customizations": {
     "vscode": {
