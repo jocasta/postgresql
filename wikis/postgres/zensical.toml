@@ -1,6 +1,6 @@
 [project]
 site_url = "https://www.example.com/"
-site_name = "PostgreSQL Wiki"
+site_name = "Mike's PostgreSQL Wiki"
 # site_description = "Your project description"
 # site_author = "Your name"
 
@@ -11,19 +11,160 @@ site_name = "PostgreSQL Wiki"
 # edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Home" = "index.md" },
-  { "Nav testing" = [
-      "nav-testing/index.md",
-      { "Dummy Page 1" = [
-          "nav-testing/dummy-page-1/index.md",
-          { "Dummy Page 1 Child" = "nav-testing/dummy-page-1/child.md" },
+  { "Home" = [
+      "index.md",
+      { "Nav testing" = [
+          "nav-testing/index.md",
+          { "Dummy Page 1" = [
+              "nav-testing/dummy-page-1/index.md",
+              { "Dummy Page 1 Child" = "nav-testing/dummy-page-1/child.md" },
+            ] },
+          { "Dummy Page 2" = [
+              "nav-testing/dummy-page-2/index.md",
+              { "Dummy Page 2 Child" = "nav-testing/dummy-page-2/child.md" },
+            ] },
         ] },
-      { "Dummy Page 2" = [
-          "nav-testing/dummy-page-2/index.md",
-          { "Dummy Page 2 Child" = "nav-testing/dummy-page-2/child.md" },
+      { "MVCC Multi Version Concurrency Control" = "mvcc-multi-version-concurrency-control/1-mvcc.md" },
+      { "Backup" = [
+          "backups/index.md",
+          { "Backup Restore Automation" = "backups/backup-restore-automation.md" },
+          { "Barman" = "backups/barman/test.md" },
+          { "Databasus" = "backups/databasus/test.md" },
+          { "Pg Dump" = "backups/pg-dump/basic-dump-restore-pattern.md" },
+        ] },
+      { "Benchmarking" = [
+          "benchmarking/index.md",
+          { "Pg Bench" = "benchmarking/pg-bench/pg-bench.md" },
+        ] },
+      { "Configuration" = [
+          "configuration/index.md",
+          { "Psqlrc" = "configuration/psqlrc.md" },
+          { "Pg HBA Conf" = "configuration/pg-hba-conf.md" },
+          { "Postgresql Conf" = "configuration/postgresql-conf.md" },
+        ] },
+      { "Connection Pooling" = [
+          "connection-pooling/index.md",
+          { "PgBouncer" = "connection-pooling/pgbouncer/test.md" },
+        ] },
+      { "Cost Analysis" = [
+          "cost-analysis/index.md",
+          { "RDS" = [
+              "cost-analysis/rds/index.md",
+              { "CUR Reports" = [
+                  "cost-analysis/rds/cur-reports/index.md",
+                  { "Athena SQL" = [
+                      "cost-analysis/rds/cur-reports/athena-sql/index.md",
+                      { "Grafana Cost By Component" = "cost-analysis/rds/cur-reports/athena-sql/grafana-cost-by-component.md" },
+                      { "Grafana Top 10 Clusters By Monthly Cost" = "cost-analysis/rds/cur-reports/athena-sql/grafana-top-10-clusters-by-monthly-cost.md" },
+                      { "RDS Daily" = "cost-analysis/rds/cur-reports/athena-sql/rds-daily.md" },
+                    ] },
+                ] },
+            ] },
+        ] },
+      { "Data Migrations" = [
+          "data-migrations/index.md",
+          { "Dump Pipe Restore" = "data-migrations/dump-pipe-restore.md" },
+          { "Dump Restore Simple" = "data-migrations/dump-restore-simple.md" },
+          { "Dump Restore Complex" = "data-migrations/dump-restore-complex.md" },
+          { "Globals Migration" = "data-migrations/globals-migration.md" },
+        ] },
+      { "Data Types" = [
+          "data-types/index.md",
+          { "Identity" = "data-types/identity/identity.md" },
+          { "UUID" = [
+              "data-types/uuid/index.md",
+              { "UUID Intro" = "data-types/uuid/uuid-intro.md" },
+              { "UUID Why You Should Migrate To UUID V7" = "data-types/uuid/uuid-why-you-should-migrate-to-uuid-v7.md" },
+              { "UUID V4 To V7 Migration" = "data-types/uuid/uuid-v4-to-v7-migration.md" },
+            ] },
+          { "JSON" = [
+              "data-types/json/index.md",
+              { "JSON" = "data-types/json/json.md" },
+              { "JSON Introduction" = "data-types/json/json-introduction.md" },
+              { "Links" = "data-types/json/links.md" },
+            ] },
+        ] },
+      { "Locks" = [
+          "locks/index.md",
+          { "Guide To Locks" = "locks/guide-to-locks.md" },
+          { "Blocking Locks" = "locks/blocking-locks.md" },
+          { "Show Locks" = "locks/show-locks.md" },
+        ] },
+      { "Log Files" = "log-files/commands.md" },
+      { "Migrations" = [
+          "migrations/index.md",
+          { "Flyway" = [
+              "migrations/flyway/index.md",
+              { "Flyway Config Options" = "migrations/flyway/flyway-config-options/config-options.md" },
+            ] },
+        ] },
+      { "Monitoring" = [
+          "monitoring/index.md",
+          { "Metrics To Monitor" = "monitoring/0-metrics-to-monitor.md" },
+          { "RDS" = [
+              "monitoring/rds/index.md",
+              { "Cost And Usage" = "monitoring/rds/cost-and-usage/cost-and-usage.md" },
+            ] },
+          { "Transaction Wraparound" = [
+              "monitoring/transaction-wraparound/index.md",
+              { "Transaction Wraparound" = "monitoring/transaction-wraparound/0-transaction-wraparound.md" },
+              { "Fixing Transaction Wraparound" = "monitoring/transaction-wraparound/1-fixing-transaction-wraparound.md" },
+            ] },
+        ] },
+      { "Resources" = [
+          "resources/index.md",
+          { "Postgres Websites" = "resources/postgres-websites.md" },
+          { "Article Store" = "resources/article-store/scaling-postgresql-to-power-800-million-chatgpt-users.md" },
+          { "Scripts" = "resources/scripts/aws-blog-posts.md" },
+        ] },
+      { "Schema Migrations" = [
+          "schema-migrations/index.md",
+          { "Changing Data Type" = "schema-migrations/changing-data-type.md" },
+          { "Migration Checklist" = "schema-migrations/migration-checklist.md" },
+          { "Flyway" = [
+              "schema-migrations/flyway/index.md",
+              { "Adding New Column" = "schema-migrations/flyway/adding-new-column.md" },
+              { "Migration Example Walkthrough" = "schema-migrations/flyway/migration-example-walkthrough.md" },
+            ] },
+        ] },
+      { "Sequences" = [
+          "sequences/index.md",
+          { "Fix Sequence Ownership" = "sequences/fix-sequence-ownership.md" },
+          { "Reset Sequence To Specified Value" = "sequences/reset-sequence-to-specified-value.md" },
+          { "Reset Sequences Nextval" = "sequences/reset-sequences-nextval.md" },
+        ] },
+      { "Settings" = [
+          "settings/index.md",
+          { "Synchronous Commit" = "settings/synchronous-commit.md" },
+          { "Checkpoints" = [
+              "settings/checkpoints/index.md",
+              { "Checkpoints" = "settings/checkpoints/checkpoints.md" },
+              { "Tuning Checkpoints For Heavy Write Load" = "settings/checkpoints/tuning-checkpoints-for-heavy-write-load.md" },
+            ] },
+        ] },
+      { "Shell Scripts" = [
+          "shell-scripts/index.md",
+          { "Downtime Testing Connection Script" = "shell-scripts/downtime-testing-connection-script.md" },
+          { "Global Objects Comparison Server A Vs Server B" = "shell-scripts/global-objects-comparison-server-a-vs-server-b.md" },
+        ] },
+      { "SSL" = [
+          "ssl/index.md",
+          { "README 2" = "ssl/readme-2.md" },
+          { "Self Signed SSL" = "ssl/self-signed-ssl.md" },
+        ] },
+      { "Tuning" = [
+          "tuning/index.md",
+          { "Quick Summary" = "tuning/quick-summary-table.md" },
+          { "Append-Heavy Workloads" = "tuning/tuning-postgres-for-append-heavy-workloads.md" },
+          { "Heavy Reads" = "tuning/tuning-postgres-for-heavy-reads.md" },
+          { "Heavy Writes" = "tuning/tuning-postgres-for-heavy-writes.md" },
+        ] },
+      { "WAL" = [
+          "wal/index.md",
+          { "Replication Slots Holding WALS" = "wal/replication-slots-holding-wals.md" },
         ] },
     ] },
-  { "Admin SQL Queries" = [
+  { "Admin Queries" = [
       "admin-queries/index.md",
       { "Bloat" = "admin-queries/bloat.md" },
       { "Connections" = "admin-queries/connections.md" },
@@ -38,11 +179,6 @@ nav = [
       { "Vacuum" = "admin-queries/vacuum.md" },
       { "WAL" = "admin-queries/wal.md" },
     ] },
-  { "Logical Replication" = [
-      "logical-replication/index.md",
-      { "SQL" = "logical-replication/sql/logical-replication-show-subscription-tables.md" },
-    ] },
-  { "MVCC Multi Version Concurrency Control" = "mvcc-multi-version-concurrency-control/1-mvcc.md" },
   { "Architecture" = [
       "architecture/index.md",
       { "Event Driven" = [
@@ -51,72 +187,23 @@ nav = [
           { "Event Driven 1" = "architecture/event-driven/event-driven-1.md" },
         ] },
     ] },
-  { "Backup" = [
-      "backups/index.md",
-      { "Backup Restore Automation" = "backups/backup-restore-automation.md" },
-      { "Barman" = "backups/barman/test.md" },
-      { "Databasus" = "backups/databasus/test.md" },
-      { "Pg Dump" = "backups/pg-dump/basic-dump-restore-pattern.md" },
-    ] },
-  { "Benchmarking" = [
-      "benchmarking/index.md",
-      { "Pg Bench" = "benchmarking/pg-bench/pg-bench.md" },
-    ] },
-  { "Command Line Tools" = [
-      "command-line-tools/index.md",
-      { "Rpg" = "command-line-tools/rpg/index.md" },
-    ] },
-  { "Configuration" = [
-      "configuration/index.md",
-      { "Psqlrc" = "configuration/psqlrc.md" },
-      { "Pg HBA Conf" = "configuration/pg-hba-conf.md" },
-      { "Postgresql Conf" = "configuration/postgresql-conf.md" },
-    ] },
-  { "Connection Pooling" = [
-      "connection-pooling/index.md",
-      { "PgBouncer" = "connection-pooling/pgbouncer/test.md" },
-    ] },
-  { "Cost Analysis" = [
-      "cost-analysis/index.md",
-      { "RDS" = [
-          "cost-analysis/rds/index.md",
-          { "CUR Reports" = [
-              "cost-analysis/rds/cur-reports/index.md",
-              { "Athena SQL" = [
-                  "cost-analysis/rds/cur-reports/athena-sql/index.md",
-                  { "Grafana Cost By Component" = "cost-analysis/rds/cur-reports/athena-sql/grafana-cost-by-component.md" },
-                  { "Grafana Top 10 Clusters By Monthly Cost" = "cost-analysis/rds/cur-reports/athena-sql/grafana-top-10-clusters-by-monthly-cost.md" },
-                  { "RDS Daily" = "cost-analysis/rds/cur-reports/athena-sql/rds-daily.md" },
-                ] },
-            ] },
-        ] },
-    ] },
-  { "Data Migrations" = [
-      "data-migrations/index.md",
-      { "Dump Pipe Restore" = "data-migrations/dump-pipe-restore.md" },
-      { "Dump Restore Simple" = "data-migrations/dump-restore-simple.md" },
-      { "Dump Restore Complex" = "data-migrations/dump-restore-complex.md" },
-      { "Globals Migration" = "data-migrations/globals-migration.md" },
-    ] },
-  { "Data Types" = [
-      "data-types/index.md",
-      { "Identity" = "data-types/identity/identity.md" },
-      { "UUID" = [
-          "data-types/uuid/index.md",
-          { "UUID Intro" = "data-types/uuid/uuid-intro.md" },
-          { "UUID Why You Should Migrate To UUID V7" = "data-types/uuid/uuid-why-you-should-migrate-to-uuid-v7.md" },
-          { "UUID V4 To V7 Migration" = "data-types/uuid/uuid-v4-to-v7-migration.md" },
-        ] },
-      { "JSON" = [
-          "data-types/json/index.md",
-          { "JSON" = "data-types/json/json.md" },
-          { "JSON Introduction" = "data-types/json/json-introduction.md" },
-          { "Links" = "data-types/json/links.md" },
-        ] },
-    ] },
   { "Extensions" = [
       "extensions/index.md",
       { "Pg Lake" = "extensions/pg-lake/temp.md" },
+    ] },
+  { "Replication" = [
+      "replication/index.md",
+      { "Introduction" = "replication/introduction.md" },
+      { "Sample Major Version Upgrade" = "replication/sample-major-version-upgrade.md" },
+      { "SQL" = [
+          "replication/sql/index.md",
+          { "Logical Replication Queries" = "replication/sql/logical-replication-queries.md" },
+          { "Replication Identity" = "replication/sql/replication-identity.md" },
+        ] },
+      { "Logical Replication" = [
+          "logical-replication/index.md",
+          { "SQL" = "logical-replication/sql/logical-replication-show-subscription-tables.md" },
+        ] },
     ] },
   { "Indexes" = [
       "indexes/index.md",
@@ -134,53 +221,36 @@ nav = [
       { "Partial Indexes" = "indexes/8-partial-indexes.md" },
       { "Expression Indexes" = "indexes/9-expression-indexes.md" },
     ] },
-  { "Locks" = [
-      "locks/index.md",
-      { "Guide To Locks" = "locks/guide-to-locks.md" },
-      { "Blocking Locks" = "locks/blocking-locks.md" },
-      { "Show Locks" = "locks/show-locks.md" },
-    ] },
-  { "Log Files" = "log-files/commands.md" },
-  { "Migrations" = [
-      "migrations/index.md",
-      { "Flyway" = [
-          "migrations/flyway/index.md",
-          { "Flyway Config Options" = "migrations/flyway/flyway-config-options/config-options.md" },
-        ] },
-    ] },
-  { "Monitoring" = [
-      "monitoring/index.md",
-      { "Metrics To Monitor" = "monitoring/0-metrics-to-monitor.md" },
-      { "RDS" = [
-          "monitoring/rds/index.md",
-          { "Cost And Usage" = "monitoring/rds/cost-and-usage/cost-and-usage.md" },
-        ] },
-      { "Transaction Wraparound" = [
-          "monitoring/transaction-wraparound/index.md",
-          { "Transaction Wraparound" = "monitoring/transaction-wraparound/0-transaction-wraparound.md" },
-          { "Fixing Transaction Wraparound" = "monitoring/transaction-wraparound/1-fixing-transaction-wraparound.md" },
-        ] },
-    ] },
-  { "Pg Stats" = [
+  { "PG Stats" = [
       "pg-stats/index.md",
       { "Reset Stats Archiver" = "pg-stats/reset-stats-archiver.md" },
       { "Size Tables" = "pg-stats/size-tables.md" },
-    ] },
-  { "Replication" = [
-      "replication/index.md",
-      { "Introduction" = "replication/introduction.md" },
-      { "Sample Major Version Upgrade" = "replication/sample-major-version-upgrade.md" },
-      { "SQL" = [
-          "replication/sql/index.md",
-          { "Logical Replication Queries" = "replication/sql/logical-replication-queries.md" },
-          { "Replication Identity" = "replication/sql/replication-identity.md" },
-        ] },
-    ] },
-  { "Resources" = [
-      "resources/index.md",
-      { "Postgres Websites" = "resources/postgres-websites.md" },
-      { "Article Store" = "resources/article-store/scaling-postgresql-to-power-800-million-chatgpt-users.md" },
-      { "Scripts" = "resources/scripts/aws-blog-posts.md" },
+      { "pg_stat_activity" = "pg-stats/pg-stat-activity.md" },
+      { "pg_stat_replication" = "pg-stats/pg-stat-replication.md" },
+      { "pg_stat_replication_slots" = "pg-stats/pg-stat-replication-slots.md" },
+      { "pg_stat_wal_receiver" = "pg-stats/pg-stat-wal-receiver.md" },
+      { "pg_stat_recovery" = "pg-stats/pg-stat-recovery.md" },
+      { "pg_stat_recovery_prefetch" = "pg-stats/pg-stat-recovery-prefetch.md" },
+      { "pg_stat_subscription" = "pg-stats/pg-stat-subscription.md" },
+      { "pg_stat_subscription_stats" = "pg-stats/pg-stat-subscription-stats.md" },
+      { "pg_stat_ssl" = "pg-stats/pg-stat-ssl.md" },
+      { "pg_stat_gssapi" = "pg-stats/pg-stat-gssapi.md" },
+      { "pg_stat_archiver" = "pg-stats/pg-stat-archiver.md" },
+      { "pg_stat_io" = "pg-stats/pg-stat-io.md" },
+      { "pg_stat_lock" = "pg-stats/pg-stat-lock.md" },
+      { "pg_stat_bgwriter" = "pg-stats/pg-stat-bgwriter.md" },
+      { "pg_stat_checkpointer" = "pg-stats/pg-stat-checkpointer.md" },
+      { "pg_stat_wal" = "pg-stats/pg-stat-wal.md" },
+      { "pg_stat_database" = "pg-stats/pg-stat-database.md" },
+      { "pg_stat_database_conflicts" = "pg-stats/pg-stat-database-conflicts.md" },
+      { "pg_stat_all_tables" = "pg-stats/pg-stat-all-tables.md" },
+      { "pg_stat_autovacuum_scores" = "pg-stats/pg-stat-autovacuum-scores.md" },
+      { "pg_stat_all_indexes" = "pg-stats/pg-stat-all-indexes.md" },
+      { "pg_statio_all_tables" = "pg-stats/pg-statio-all-tables.md" },
+      { "pg_statio_all_indexes" = "pg-stats/pg-statio-all-indexes.md" },
+      { "pg_statio_all_sequences" = "pg-stats/pg-statio-all-sequences.md" },
+      { "pg_stat_user_functions" = "pg-stats/pg-stat-user-functions.md" },
+      { "pg_stat_slru" = "pg-stats/pg-stat-slru.md" },
     ] },
   { "Scaling" = [
       "scaling/index.md",
@@ -193,43 +263,9 @@ nav = [
         ] },
       { "Sharding" = "scaling/sharding/test.md" },
     ] },
-  { "Schema Migrations" = [
-      "schema-migrations/index.md",
-      { "Changing Data Type" = "schema-migrations/changing-data-type.md" },
-      { "Migration Checklist" = "schema-migrations/migration-checklist.md" },
-      { "Flyway" = [
-          "schema-migrations/flyway/index.md",
-          { "Adding New Column" = "schema-migrations/flyway/adding-new-column.md" },
-          { "Migration Example Walkthrough" = "schema-migrations/flyway/migration-example-walkthrough.md" },
-        ] },
-    ] },
-  { "Sequences" = [
-      "sequences/index.md",
-      { "Fix Sequence Ownership" = "sequences/fix-sequence-ownership.md" },
-      { "Reset Sequence To Specified Value" = "sequences/reset-sequence-to-specified-value.md" },
-      { "Reset Sequences Nextval" = "sequences/reset-sequences-nextval.md" },
-    ] },
-  { "Settings" = [
-      "settings/index.md",
-      { "Synchronous Commit" = "settings/synchronous-commit.md" },
-      { "Checkpoints" = [
-          "settings/checkpoints/index.md",
-          { "Checkpoints" = "settings/checkpoints/checkpoints.md" },
-          { "Tuning Checkpoints For Heavy Write Load" = "settings/checkpoints/tuning-checkpoints-for-heavy-write-load.md" },
-        ] },
-    ] },
-  { "Shell Scripts" = [
-      "shell-scripts/index.md",
-      { "Downtime Testing Connection Script" = "shell-scripts/downtime-testing-connection-script.md" },
-      { "Global Objects Comparison Server A Vs Server B" = "shell-scripts/global-objects-comparison-server-a-vs-server-b.md" },
-    ] },
-  { "SSL" = [
-      "ssl/index.md",
-      { "README 2" = "ssl/readme-2.md" },
-      { "Self Signed SSL" = "ssl/self-signed-ssl.md" },
-    ] },
-  { "Tools" = [
-      "tools/index.md",
+  { "CLI_Tools" = [
+      "command-line-tools/index.md",
+      { "Rpg" = "command-line-tools/rpg/index.md" },
       { "AI DBA Workbench" = "tools/ai-dba-workbench/index.md" },
       { "PgCenter" = "tools/pgcenter/pgcenter.md" },
       { "Pg Squeeze" = "tools/pg-squeeze/pg-squeeze.md" },
@@ -240,17 +276,6 @@ nav = [
         ] },
       { "Pmp4pg" = "tools/pmp4pg/intro.md" },
       { "Stackrender" = "tools/stackrender/stackrender.md" },
-    ] },
-  { "Tuning" = [
-      "tuning/index.md",
-      { "Quick Summary" = "tuning/quick-summary-table.md" },
-      { "Append-Heavy Workloads" = "tuning/tuning-postgres-for-append-heavy-workloads.md" },
-      { "Heavy Reads" = "tuning/tuning-postgres-for-heavy-reads.md" },
-      { "Heavy Writes" = "tuning/tuning-postgres-for-heavy-writes.md" },
-    ] },
-  { "WAL" = [
-      "wal/index.md",
-      { "Replication Slots Holding WALS" = "wal/replication-slots-holding-wals.md" },
     ] },
 ]
 
@@ -282,7 +307,7 @@ features = [
   "navigation.path",
   # "navigation.prune",
   # "navigation.sections",
-  # "navigation.tabs",
+  "navigation.tabs",
   # "navigation.tabs.sticky",
   "navigation.top",
   "navigation.tracking",

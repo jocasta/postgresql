@@ -1,41 +1,41 @@
 # Settings
 
-## Show Non Default Settings
+??? example "Show Non Default Settings"
 
-``` sql title="Show_non_default_settings.sql"
-SELECT
-    name,
-    setting,
-    boot_val AS default_value,
-    unit,
-    context,
-    source
-FROM pg_settings
-WHERE setting IS DISTINCT FROM boot_val
-ORDER BY name;
+    ``` sql title="Show_non_default_settings.sql"
+    SELECT
+        name,
+        setting,
+        boot_val AS default_value,
+        unit,
+        context,
+        source
+    FROM pg_settings
+    WHERE setting IS DISTINCT FROM boot_val
+    ORDER BY name;
 
 
--- What this shows you
+    -- What this shows you
 
---  * setting → current effective value
+    --  * setting → current effective value
 
---  * boot_val → compiled default
+    --  * boot_val → compiled default
 
---  * source → where it came from:
+    --  * source → where it came from:
 
---       >  configuration file
+    --       >  configuration file
 
---       >  command line
+    --       >  command line
 
---       >  environment variable
+    --       >  environment variable
 
---       >  database
+    --       >  database
 
---       >  user
+    --       >  user
 
---       >  override
+    --       >  override
 
---       >  context → whether it needs reload or restart
+    --       >  context → whether it needs reload or restart
 
--- This is the cleanest “what have we changed from stock?” view.
-```
+    -- This is the cleanest “what have we changed from stock?” view.
+    ```
