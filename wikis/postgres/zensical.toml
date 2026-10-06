@@ -114,7 +114,16 @@ nav = [
       { "Resources" = [
           "resources/index.md",
           { "Postgres Websites" = "resources/postgres-websites.md" },
-          { "Article Store" = "resources/article-store/scaling-postgresql-to-power-800-million-chatgpt-users.md" },
+          { "Articles & Blogs" = [
+              "resources/articles-and-blogs/index.md",
+              { "AI" = "resources/articles-and-blogs/ai/index.md" },
+              { "New Version Features" = "resources/articles-and-blogs/new-version-features/index.md" },
+              { "Migrations" = "resources/articles-and-blogs/migrations/index.md" },
+              { "Others" = [
+                  "resources/articles-and-blogs/others/index.md",
+                  { "Scaling PostgreSQL To Power 800 Million ChatGPT Users" = "resources/articles-and-blogs/others/scaling-postgresql-to-power-800-million-chatgpt-users.md" },
+                ] },
+            ] },
           { "Scripts" = "resources/scripts/aws-blog-posts.md" },
         ] },
       { "Schema Migrations" = [
@@ -186,9 +195,33 @@ nav = [
           { "Event Drive 2 Explained" = "architecture/event-driven/event-drive-2-explained.md" },
           { "Event Driven 1" = "architecture/event-driven/event-driven-1.md" },
         ] },
+      { "Mermaid_Samples" = [
+          "architecture/mermaid-samples/index.md",
+          { "Flowcharts" = "architecture/mermaid-samples/flowcharts.md" },
+          { "Sequence Diagrams" = "architecture/mermaid-samples/sequence-diagrams.md" },
+          { "Data Models & State" = "architecture/mermaid-samples/data-models-and-state.md" },
+          { "Planning & Process" = "architecture/mermaid-samples/planning-and-process.md" },
+          { "Charts" = "architecture/mermaid-samples/charts.md" },
+          { "Architecture & Layout" = "architecture/mermaid-samples/architecture-and-layout.md" },
+        ] },
     ] },
   { "Extensions" = [
       "extensions/index.md",
+      { "PostGIS" = "extensions/postgis/index.md" },
+      { "pgvector" = "extensions/pgvector/index.md" },
+      { "pg_stat_statements" = "extensions/pg-stat-statements/index.md" },
+      { "auto_explain" = "extensions/auto-explain/index.md" },
+      { "pg_buffercache" = "extensions/pg-buffercache/index.md" },
+      { "pgstattuple" = "extensions/pgstattuple/index.md" },
+      { "pg_wait_sampling" = "extensions/pg-wait-sampling/index.md" },
+      { "btree_gin" = "extensions/btree-gin/index.md" },
+      { "btree_gist" = "extensions/btree-gist/index.md" },
+      { "pg_cron" = "extensions/pg-cron/index.md" },
+      { "pg_partman" = "extensions/pg-partman/index.md" },
+      { "pg_repack" = "extensions/pg-repack/index.md" },
+      { "pg_squeeze" = "extensions/pg-squeeze/index.md" },
+      { "pg_prewarm" = "extensions/pg-prewarm/index.md" },
+      { "postgres_fdw" = "extensions/postgres-fdw/index.md" },
       { "Pg Lake" = "extensions/pg-lake/temp.md" },
     ] },
   { "Replication" = [
@@ -268,7 +301,6 @@ nav = [
       { "Rpg" = "command-line-tools/rpg/index.md" },
       { "AI DBA Workbench" = "tools/ai-dba-workbench/index.md" },
       { "PgCenter" = "tools/pgcenter/pgcenter.md" },
-      { "Pg Squeeze" = "tools/pg-squeeze/pg-squeeze.md" },
       { "Pgcli" = [
           "tools/pgcli/index.md",
           { "Config" = "tools/pgcli/config.md" },
@@ -316,7 +348,7 @@ features = [
   # "toc.integrate",
 ]
 
-# logo = "assets/logo.png"
+logo = "assets/postgresql-elephant.svg"
 
 # [project.theme.icon]
 # logo = "lucide/smile"
