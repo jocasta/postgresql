@@ -205,6 +205,66 @@ nav = [
           { "Architecture & Layout" = "architecture/mermaid-samples/architecture-and-layout.md" },
         ] },
     ] },
+  { "Postgres Internals" = [
+      "internals/index.md",
+      { "Process and Memory Architecture" = [
+          "internals/process-and-memory-architecture/index.md",
+          { "Postmaster, backends and process-per-connection" = "internals/process-and-memory-architecture/postmaster-and-backends.md" },
+          { "Auxiliary processes" = "internals/process-and-memory-architecture/auxiliary-processes.md" },
+          { "Shared memory" = "internals/process-and-memory-architecture/shared-memory.md" },
+          { "Local (per-backend) memory" = "internals/process-and-memory-architecture/local-memory.md" },
+          { "Dynamic shared memory and parallel query" = "internals/process-and-memory-architecture/dynamic-shared-memory-and-parallel-query.md" },
+        ] },
+      { "Storage Layout" = [
+          "internals/storage-layout/index.md",
+          { "Cluster directory structure" = "internals/storage-layout/cluster-directory-structure.md" },
+          { "Segments and forks" = "internals/storage-layout/segments-and-forks.md" },
+          { "Page layout" = "internals/storage-layout/page-layout.md" },
+          { "Tuple structure" = "internals/storage-layout/tuple-structure.md" },
+          { "TOAST" = "internals/storage-layout/toast.md" },
+          { "Free Space Map and Visibility Map" = "internals/storage-layout/fsm-and-vm.md" },
+        ] },
+      { "MVCC and Transaction Management" = [
+          "internals/mvcc-and-transaction-management/index.md",
+          { "Transaction IDs, wraparound and freezing" = "internals/mvcc-and-transaction-management/xids-wraparound-and-freezing.md" },
+          { "Snapshots and visibility rules" = "internals/mvcc-and-transaction-management/snapshots-and-visibility.md" },
+          { "Hint bits and the commit log" = "internals/mvcc-and-transaction-management/hint-bits-and-clog.md" },
+          { "Isolation levels and SSI" = "internals/mvcc-and-transaction-management/isolation-levels-and-ssi.md" },
+          { "Subtransactions, savepoints and subxid overflow" = "internals/mvcc-and-transaction-management/subtransactions.md" },
+          { "Multixacts" = "internals/mvcc-and-transaction-management/multixacts.md" },
+          { "Two-phase commit and prepared transactions" = "internals/mvcc-and-transaction-management/two-phase-commit.md" },
+        ] },
+      { "Vacuum and Bloat Management" = [
+          "internals/vacuum-and-bloat-management/index.md",
+          { "Dead tuple lifecycle and HOT pruning" = "internals/vacuum-and-bloat-management/dead-tuples-and-hot-pruning.md" },
+          { "VACUUM phases" = "internals/vacuum-and-bloat-management/vacuum-phases.md" },
+          { "Autovacuum triggering, throttling and tuning" = "internals/vacuum-and-bloat-management/autovacuum-tuning.md" },
+          { "Aggressive vacuum, freeze ages and relfrozenxid" = "internals/vacuum-and-bloat-management/aggressive-vacuum-and-freezing.md" },
+          { "Bloat causes" = "internals/vacuum-and-bloat-management/bloat-causes.md" },
+          { "VACUUM FULL, pg_repack and table rewrites" = "internals/vacuum-and-bloat-management/vacuum-full-and-rewrites.md" },
+          { "REPACK CONCURRENTLY (PG19)" = "internals/vacuum-and-bloat-management/repack-concurrently.md" },
+        ] },
+      { "Write-Ahead Logging and Durability" = [
+          "internals/wal-and-durability/index.md",
+          { "WAL records, LSNs and segment files" = "internals/wal-and-durability/wal-records-lsns-segments.md" },
+          { "Full-page writes and torn pages" = "internals/wal-and-durability/full-page-writes.md" },
+          { "Checkpoints" = "internals/wal-and-durability/checkpoints.md" },
+          { "Crash recovery and redo" = "internals/wal-and-durability/crash-recovery.md" },
+          { "synchronous_commit and group commit" = "internals/wal-and-durability/synchronous-commit-and-group-commit.md" },
+          { "WAL archiving and PITR" = "internals/wal-and-durability/archiving-and-pitr.md" },
+          { "WAL compression and wal_level" = "internals/wal-and-durability/wal-compression-and-wal-level.md" },
+        ] },
+      { "Buffer Manager and I/O" = [
+          "internals/buffer-manager-and-io/index.md",
+          { "Buffer pool, descriptors and the mapping hash" = "internals/buffer-manager-and-io/buffer-pool-structure.md" },
+          { "Clock-sweep eviction and usage counts" = "internals/buffer-manager-and-io/clock-sweep-eviction.md" },
+          { "Ring buffers" = "internals/buffer-manager-and-io/ring-buffers.md" },
+          { "Background writer vs checkpointer vs backend writes" = "internals/buffer-manager-and-io/background-writer-vs-checkpointer.md" },
+          { "OS page cache and double buffering" = "internals/buffer-manager-and-io/os-page-cache.md" },
+          { "Direct I/O and async I/O (PG17 / PG18)" = "internals/buffer-manager-and-io/direct-and-async-io.md" },
+          { "pg_buffercache and pg_stat_io" = "internals/buffer-manager-and-io/pg-buffercache-and-pg-stat-io.md" },
+        ] },
+    ] },
   { "Extensions" = [
       "extensions/index.md",
       { "PostGIS" = "extensions/postgis/index.md" },
@@ -312,7 +372,7 @@ nav = [
 ]
 
 extra_css = ["stylesheets/extra.css"]
-# extra_javascript = ["javascripts/extra.js"]
+extra_javascript = ["javascripts/mermaid-zoom.js"]
 
 [project.theme]
 # variant = "classic"

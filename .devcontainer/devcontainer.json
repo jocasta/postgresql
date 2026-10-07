@@ -1,10 +1,10 @@
 {
-  "name": "mike-wikis",
+  "name": "postgresql",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "workspaceFolder": "/workspaces/mike-wikis",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mike-wikis,type=bind",
+  "workspaceFolder": "/workspaces/postgresql",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/postgresql,type=bind",
   "remoteUser": "vscode",
   "mounts": [
     "source=${env:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,readonly",

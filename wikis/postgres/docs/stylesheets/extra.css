@@ -13,3 +13,72 @@
   color: var(--md-accent-fg-color);
   border-radius: 0.1rem;
 }
+
+/* ── Mermaid Diagrams ── */
+
+/* Centre diagrams narrower than the content area (the SVG sits in a shadow root inside div.mermaid) */
+div.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+/* Click-to-enlarge viewer (see javascripts/mermaid-zoom.js) */
+div.mermaid {
+  cursor: zoom-in;
+}
+
+.mermaid-viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  flex-direction: column;
+  background: var(--md-default-bg-color);
+}
+
+.mermaid-viewer.is-open {
+  display: flex;
+}
+
+.mermaid-viewer__bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 0.05rem solid var(--md-default-fg-color--lightest);
+}
+
+.mermaid-viewer__bar button {
+  padding: 0.3rem 0.8rem;
+  border: 0.05rem solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: transparent;
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.mermaid-viewer__bar button:hover,
+.mermaid-viewer__bar button:focus-visible {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.mermaid-viewer__stage {
+  flex: 1;
+  min-height: 0;
+  padding: 1rem;
+  cursor: zoom-out;
+}
+
+.mermaid-viewer__stage svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Stop the page scrolling behind the viewer */
+.mermaid-viewer-open,
+.mermaid-viewer-open body {
+  overflow: hidden;
+}
