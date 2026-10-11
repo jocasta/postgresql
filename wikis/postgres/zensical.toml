@@ -369,6 +369,17 @@ nav = [
       { "Pmp4pg" = "tools/pmp4pg/intro.md" },
       { "Stackrender" = "tools/stackrender/stackrender.md" },
     ] },
+  { "3rd_party_tools" = [
+      "third-party-tools/index.md",
+      { "DBTune" = "third-party-tools/dbtune/index.md" },
+      { "pgEdge" = "third-party-tools/pgedge/index.md" },
+      { "PgHero" = "third-party-tools/pghero/index.md" },
+      { "pgbadger" = "third-party-tools/pgbadger/index.md" },
+    ] },
+  { "RDS" = [
+      "rds/index.md",
+      { "Data Lake S3 - Iceberg & Parquet" = "rds/data-lake-s3-iceberg-parquet/index.md" },
+    ] },
 ]
 
 extra_css = ["stylesheets/extra.css"]
