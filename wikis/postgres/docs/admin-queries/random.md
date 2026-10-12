@@ -1,5 +1,18 @@
 # Random
 
+??? example "Generate column names for SQL"
+
+    ```sql title=Generate column names for SQL
+    SELECT format(
+    'SELECT %s FROM pg_stat_user_tables ORDER BY n_live_tup DESC;',
+    string_agg(quote_ident(column_name), ', ' ORDER BY ordinal_position)
+    )
+    FROM information_schema.columns
+    WHERE table_schema = 'pg_catalog'
+    AND table_name = 'pg_stat_user_tables';
+
+    ```
+
 ??? example "Database Access Permission Grants"
 
     ``` sql title="database_access_permission_grants.sql"
