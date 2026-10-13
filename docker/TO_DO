@@ -1,0 +1,13 @@
+(*) Docker Postgres (for personal and Work)
+
+     Different folders?:
+
+                       > pgbouncer setup
+                       > pg_partman setup
+                       > pg_cron
+                       > TimescaleDB
+                       > pg_vector
+                       > Citus
+                       > pg_layers setup?
+                       > flyway setup
+                       > HA Setup?  (patroni?)
