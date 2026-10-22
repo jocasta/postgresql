@@ -1,5 +1,6 @@
-/* ── Mermaid diagram viewer ──
- * Click any Mermaid diagram to open it full screen, with an "Open in new tab" button.
+/* ── Mermaid diagram & image viewer ──
+ * Click any Mermaid diagram or content image to open it full screen, with an "Open in new tab" button.
+ * Images that are links, and emoji/icons, are left alone.
  *
  * Zensical renders each diagram into a *closed* shadow root on a div.mermaid host, so the
  * SVG can't normally be reached from page scripts. We wrap attachShadow to keep a reference
@@ -24,7 +25,7 @@
     overlay.setAttribute("aria-modal", "true");
     overlay.innerHTML =
       '<div class="mermaid-viewer__bar">' +
-      '<button type="button" data-action="tab" title="Open the diagram on its own in a new tab">Open in new tab</button>' +
+      '<button type="button" data-action="tab" title="Open on its own in a new tab">Open in new tab</button>' +
       '<button type="button" data-action="close" title="Close (Esc)" aria-label="Close">✕</button>' +
       "</div>" +
       '<div class="mermaid-viewer__stage"></div>';
@@ -38,13 +39,20 @@
   }
 
   function open(host) {
-    const svg = roots.get(host)?.querySelector("svg");
-    if (!svg) return;
+    let clone;
+    if (host.tagName === "IMG") {
+      clone = new Image();
+      clone.src = host.currentSrc || host.src;
+      clone.alt = host.alt;
+    } else {
+      const svg = roots.get(host)?.querySelector("svg");
+      if (!svg) return;
+      clone = svg.cloneNode(true);
+      clone.removeAttribute("style");          // drop Mermaid's max-width so it can grow
+      clone.setAttribute("width", "100%");
+      clone.setAttribute("height", "100%");
+    }
     if (!overlay) buildOverlay();
-    const clone = svg.cloneNode(true);
-    clone.removeAttribute("style");          // drop Mermaid's max-width so it can grow
-    clone.setAttribute("width", "100%");
-    clone.setAttribute("height", "100%");
     stage.replaceChildren(clone);
     overlay._host = host;
     overlay.classList.add("is-open");
@@ -63,6 +71,10 @@
   // wiki page) into concrete values, and size the SVG to its natural dimensions.
   function openInTab() {
     const host = overlay._host;
+    if (host.tagName === "IMG") {
+      window.open(host.currentSrc || host.src, "_blank");
+      return;
+    }
     const svg = roots.get(host)?.querySelector("svg");
     if (!svg) return;
     const clone = svg.cloneNode(true);
@@ -90,11 +102,22 @@
     window.open(URL.createObjectURL(blob), "_blank");
   }
 
+  // Content images only: not linked images (the click should follow the link), not emoji/icons.
+  function isZoomable(el) {
+    return (
+      el.tagName === "IMG" &&
+      el.closest(".md-content .md-typeset") &&
+      !el.closest("a") &&
+      !el.matches(".twemoji img, .emojione, .gemoji")
+    );
+  }
+
   // Event delegation survives Zensical's instant navigation (pages are swapped without reload).
   document.addEventListener("click", (e) => {
     if (overlay && overlay.contains(e.target)) return;
     const host = e.target.closest && e.target.closest("div.mermaid");
-    if (host && roots.has(host)) open(host);
+    if (host && roots.has(host)) return open(host);
+    if (isZoomable(e.target)) open(e.target);
   });
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && overlay?.classList.contains("is-open")) close();

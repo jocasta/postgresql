@@ -1,0 +1,6 @@
+# pg_partman: Install
+
+```sql
+CREATE SCHEMA IF NOT EXISTS partman;
+CREATE EXTENSION IF NOT EXISTS pg_partman SCHEMA partman;
+```

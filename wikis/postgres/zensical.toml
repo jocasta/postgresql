@@ -267,20 +267,74 @@ nav = [
     ] },
   { "Extensions" = [
       "extensions/index.md",
-      { "PostGIS" = "extensions/postgis/index.md" },
-      { "pgvector" = "extensions/pgvector/index.md" },
-      { "pg_stat_statements" = "extensions/pg-stat-statements/index.md" },
-      { "auto_explain" = "extensions/auto-explain/index.md" },
-      { "pg_buffercache" = "extensions/pg-buffercache/index.md" },
-      { "pgstattuple" = "extensions/pgstattuple/index.md" },
-      { "pg_wait_sampling" = "extensions/pg-wait-sampling/index.md" },
-      { "pg_statviz" = "extensions/pg-statviz/index.md" },
-      { "btree_gin" = "extensions/btree-gin/index.md" },
-      { "btree_gist" = "extensions/btree-gist/index.md" },
-      { "pg_cron" = "extensions/pg-cron/index.md" },
-      { "pg_partman" = "extensions/pg-partman/index.md" },
+      { "PostGIS" = [
+          "extensions/postgis/index.md",
+          { "Introduction" = "extensions/postgis/introduction.md" },
+          { "Install" = "extensions/postgis/install.md" },
+        ] },
+      { "pgvector" = [
+          "extensions/pgvector/index.md",
+          { "Introduction" = "extensions/pgvector/introduction.md" },
+          { "Install" = "extensions/pgvector/install.md" },
+        ] },
+      { "pg_stat_statements" = [
+          "extensions/pg-stat-statements/index.md",
+          { "Introduction" = "extensions/pg-stat-statements/introduction.md" },
+          { "Install" = "extensions/pg-stat-statements/install.md" },
+          { "Blogs" = [
+              "extensions/pg-stat-statements/blogs/index.md",
+              { "I Wish I Had Enabled It Sooner" = "extensions/pg-stat-statements/blogs/pg-stat-statements-wish-i-had-enabled.md" },
+            ] },
+        ] },
+      { "auto_explain" = [
+          "extensions/auto-explain/index.md",
+          { "Introduction" = "extensions/auto-explain/introduction.md" },
+          { "Install" = "extensions/auto-explain/install.md" },
+        ] },
+      { "pg_buffercache" = [
+          "extensions/pg-buffercache/index.md",
+          { "Introduction" = "extensions/pg-buffercache/introduction.md" },
+          { "Install" = "extensions/pg-buffercache/install.md" },
+        ] },
+      { "pgstattuple" = [
+          "extensions/pgstattuple/index.md",
+          { "Introduction" = "extensions/pgstattuple/introduction.md" },
+          { "Install" = "extensions/pgstattuple/install.md" },
+        ] },
+      { "pg_wait_sampling" = [
+          "extensions/pg-wait-sampling/index.md",
+          { "Introduction" = "extensions/pg-wait-sampling/introduction.md" },
+          { "Install" = "extensions/pg-wait-sampling/install.md" },
+        ] },
+      { "pg_statviz" = [
+          "extensions/pg-statviz/index.md",
+          { "Introduction" = "extensions/pg-statviz/introduction.md" },
+          { "Install" = "extensions/pg-statviz/install.md" },
+        ] },
+      { "btree_gin" = [
+          "extensions/btree-gin/index.md",
+          { "Introduction" = "extensions/btree-gin/introduction.md" },
+          { "Install" = "extensions/btree-gin/install.md" },
+        ] },
+      { "btree_gist" = [
+          "extensions/btree-gist/index.md",
+          { "Introduction" = "extensions/btree-gist/introduction.md" },
+          { "Install" = "extensions/btree-gist/install.md" },
+        ] },
+      { "pg_cron" = [
+          "extensions/pg-cron/index.md",
+          { "Introduction" = "extensions/pg-cron/introduction.md" },
+          { "Install" = "extensions/pg-cron/install.md" },
+        ] },
+      { "pg_partman" = [
+          "extensions/pg-partman/index.md",
+          { "Introduction" = "extensions/pg-partman/introduction.md" },
+          { "Install" = "extensions/pg-partman/install.md" },
+        ] },
       { "TimescaleDB" = [
           "extensions/timescaledb/index.md",
+          { "Introduction" = "extensions/timescaledb/introduction.md" },
+          { "Install" = "extensions/timescaledb/install.md" },
           { "Hypertables" = "extensions/timescaledb/hypertables.md" },
           { "Compression & Retention" = "extensions/timescaledb/compression-retention.md" },
           { "Continuous Aggregates" = "extensions/timescaledb/continuous-aggregates.md" },
@@ -297,11 +351,31 @@ nav = [
               { "system" = "extensions/timescaledb/telegraf/system.md" },
             ] },
         ] },
-      { "pg_repack" = "extensions/pg-repack/index.md" },
-      { "pg_squeeze" = "extensions/pg-squeeze/index.md" },
-      { "pg_prewarm" = "extensions/pg-prewarm/index.md" },
-      { "postgres_fdw" = "extensions/postgres-fdw/index.md" },
-      { "Pg Lake" = "extensions/pg-lake/temp.md" },
+      { "pg_repack" = [
+          "extensions/pg-repack/index.md",
+          { "Introduction" = "extensions/pg-repack/introduction.md" },
+          { "Install" = "extensions/pg-repack/install.md" },
+        ] },
+      { "pg_squeeze" = [
+          "extensions/pg-squeeze/index.md",
+          { "Introduction" = "extensions/pg-squeeze/introduction.md" },
+          { "Install" = "extensions/pg-squeeze/install.md" },
+        ] },
+      { "pg_prewarm" = [
+          "extensions/pg-prewarm/index.md",
+          { "Introduction" = "extensions/pg-prewarm/introduction.md" },
+          { "Install" = "extensions/pg-prewarm/install.md" },
+        ] },
+      { "postgres_fdw" = [
+          "extensions/postgres-fdw/index.md",
+          { "Introduction" = "extensions/postgres-fdw/introduction.md" },
+          { "Install" = "extensions/postgres-fdw/install.md" },
+        ] },
+      { "pg_lake" = [
+          "extensions/pg-lake/index.md",
+          { "Introduction" = "extensions/pg-lake/introduction.md" },
+          { "Install" = "extensions/pg-lake/install.md" },
+        ] },
     ] },
   { "Replication" = [
       "replication/index.md",
@@ -397,7 +471,17 @@ nav = [
     ] },
   { "RDS" = [
       "rds/index.md",
-      { "Data Lake S3 - Iceberg & Parquet" = "rds/data-lake-s3-iceberg-parquet/index.md" },
+      { "Aurora" = [
+          "rds/aurora/index.md",
+          { "Data Lake S3 - Iceberg & Parquet" = [
+              "rds/aurora/data-lake-s3-iceberg-parquet/index.md",
+              { "Blogs" = [
+                  "rds/aurora/data-lake-s3-iceberg-parquet/blogs/index.md",
+                  { "AWS Put DuckDB Inside PostgreSQL" = "rds/aurora/data-lake-s3-iceberg-parquet/blogs/aws-duckdb-inside-postgresql.md" },
+                  { "DuckDB Inside Aurora: 59M Rows Tested" = "rds/aurora/data-lake-s3-iceberg-parquet/blogs/aurora-duckdb-59-million-rows.md" },
+                ] },
+            ] },
+        ] },
     ] },
 ]
 

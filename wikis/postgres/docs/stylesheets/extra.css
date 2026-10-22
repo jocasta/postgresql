@@ -22,8 +22,9 @@ div.mermaid {
   justify-content: center;
 }
 
-/* Click-to-enlarge viewer (see javascripts/mermaid-zoom.js) */
-div.mermaid {
+/* Click-to-enlarge viewer for diagrams and content images (see javascripts/mermaid-zoom.js) */
+div.mermaid,
+.md-content .md-typeset img:not(a img):not(.twemoji img):not(.emojione):not(.gemoji) {
   cursor: zoom-in;
 }
 
@@ -75,6 +76,14 @@ div.mermaid {
 .mermaid-viewer__stage svg {
   display: block;
   margin: 0 auto;
+}
+
+/* Images scale up/down to fit the screen, keeping their aspect ratio */
+.mermaid-viewer__stage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* Stop the page scrolling behind the viewer */
