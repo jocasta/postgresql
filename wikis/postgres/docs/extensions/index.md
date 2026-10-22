@@ -15,6 +15,7 @@
 | [btree_gist](btree-gist/index.md) | Indexing / constraints | No | Yes |
 | [pg_cron](pg-cron/index.md) | Scheduling | Yes | No |
 | [pg_partman](pg-partman/index.md) | Partitioning | Only for the background worker | No |
+| [TimescaleDB](timescaledb/index.md) | Time-series / partitioning | Yes | No |
 | [pg_repack](pg-repack/index.md) | Maintenance / bloat | No | No |
 | [pg_squeeze](pg-squeeze/index.md) | Maintenance / bloat | Yes (+ `wal_level = logical`) | No |
 | [pg_prewarm](pg-prewarm/index.md) | Cache warming | Only for autoprewarm | Yes |

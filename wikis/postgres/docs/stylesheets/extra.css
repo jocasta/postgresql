@@ -82,3 +82,65 @@ div.mermaid {
 .mermaid-viewer-open body {
   overflow: hidden;
 }
+
+/* ── Tables ── */
+
+/* Colours come from the theme palette, so light and dark mode both follow primary/accent */
+.md-typeset table:not([class]) {
+  --table-stripe: color-mix(in srgb, var(--md-primary-fg-color) 4%, transparent);
+  --table-hover: color-mix(in srgb, var(--md-accent-fg-color) 12%, transparent);
+  --table-border: color-mix(in srgb, var(--md-primary-fg-color) 25%, transparent);
+  border: 0.05rem solid var(--table-border);
+  border-radius: 0.3rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.08);
+  font-size: 0.68rem;
+}
+
+/* Header row: solid primary colour */
+.md-typeset table:not([class]) th {
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.7em 1.1em;
+  border-bottom: 0.1rem solid var(--md-primary-fg-color--dark);
+}
+
+.md-typeset table:not([class]) th code {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.6em 1.1em;
+  border-top: 0.05rem solid var(--table-border);
+}
+
+/* Zebra stripes + hover highlight */
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: var(--table-stripe);
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background-color: var(--table-hover);
+  box-shadow: inset 0.15rem 0 0 var(--md-accent-fg-color);
+}
+
+/* First column is usually the key (option / field / column name): emphasise it */
+.md-typeset table:not([class]) td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.md-typeset table:not([class]) td:first-child code {
+  color: var(--md-primary-fg-color);
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 10%, transparent);
+}
+
+/* Primary blue is too dark on slate - use the accent colour for contrast */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td:first-child code {
+  color: var(--md-accent-fg-color);
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 12%, transparent);
+}

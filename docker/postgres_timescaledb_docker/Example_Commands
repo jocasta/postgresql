@@ -1,0 +1,63 @@
+
+## CONNECT TO POSTGRES CONTAINER
+psql -h localhost -p 5432 -U mike -d test
+
+## RUN FLYWAY (CREATES THE timescaledb EXTENSION + SAMPLE HYPERTABLE)
+flyway migrate
+flyway info
+
+## RUN FLYWAY FOR THE metrics DB (timescaledb + telegraf SCHEMA)
+flyway -configFiles=flyway_metrics.conf migrate
+flyway -configFiles=flyway_metrics.conf info
+
+## CHECK TIMESCALEDB
+SELECT extname, extversion FROM pg_extension WHERE extname = 'timescaledb';
+SHOW shared_preload_libraries;
+
+## LOAD 14 DAYS OF SAMPLE DATA (run as mike)
+INSERT INTO metrics.cpu (time, host, usage_user, usage_sys)
+SELECT t, 'host-' || h, random() * 100, random() * 20
+FROM generate_series(now() - INTERVAL '14 days', now(), INTERVAL '1 minute') AS t,
+     generate_series(1, 5) AS h;
+
+## HYPERTABLES / CHUNKS
+SELECT * FROM timescaledb_information.hypertables;
+SELECT chunk_name, range_start, range_end, is_compressed
+FROM timescaledb_information.chunks
+WHERE hypertable_name = 'cpu'
+ORDER BY range_start;
+
+## BACKGROUND JOBS (compression, retention, cagg refresh) + LAST RUN STATS
+SELECT job_id, application_name, schedule_interval, hypertable_name FROM timescaledb_information.jobs;
+SELECT job_id, last_run_status, last_run_started_at, next_start FROM timescaledb_information.job_stats;
+
+## RUN A POLICY JOB NOW, RATHER THAN WAITING FOR ITS SCHEDULE (run as mike_migrations)
+CALL run_job(<job_id>);
+
+## REFRESH THE CONTINUOUS AGGREGATE MANUALLY AND QUERY IT
+CALL refresh_continuous_aggregate('metrics.cpu_hourly', NULL, now() - INTERVAL '1 hour');
+SELECT * FROM metrics.cpu_hourly ORDER BY bucket DESC, host LIMIT 20;
+
+## COMPRESSION STATS
+SELECT * FROM hypertable_compression_stats('metrics.cpu');
+
+## ---------------------------------------------------------------------------
+## metrics DB (TELEGRAF)
+## ---------------------------------------------------------------------------
+psql -h localhost -p 5432 -U mike -d metrics
+
+## CHECK telegraf CAN CONNECT
+psql "host=localhost port=5432 user=telegraf password=secret dbname=metrics" -c "SELECT current_user, current_setting('search_path');"
+
+## TABLES TELEGRAF HAS CREATED, AND WHICH ARE HYPERTABLES
+\dt telegraf.*
+SELECT hypertable_schema, hypertable_name, compression_enabled FROM timescaledb_information.hypertables;
+
+## POLICIES TELEGRAF'S create_templates ADDED
+SELECT job_id, application_name, hypertable_name, owner, config FROM timescaledb_information.jobs WHERE hypertable_schema = 'telegraf';
+
+## QUERY A MEASUREMENT JOINED TO ITS TAGS (tags_as_foreign_keys = true)
+SELECT c.time, t.*, c.usage_user
+FROM telegraf.cpu c
+JOIN telegraf.cpu_tag t USING (tag_id)
+ORDER BY c.time DESC LIMIT 20;
