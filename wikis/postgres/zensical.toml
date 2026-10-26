@@ -381,14 +381,16 @@ nav = [
       "replication/index.md",
       { "Introduction" = "replication/introduction.md" },
       { "Sample Major Version Upgrade" = "replication/sample-major-version-upgrade.md" },
-      { "SQL" = [
-          "replication/sql/index.md",
-          { "Logical Replication Queries" = "replication/sql/logical-replication-queries.md" },
-          { "Replication Identity" = "replication/sql/replication-identity.md" },
-        ] },
       { "Logical Replication" = [
           "logical-replication/index.md",
-          { "SQL" = "logical-replication/sql/logical-replication-show-subscription-tables.md" },
+          { "Introduction" = "logical-replication/introduction.md" },
+          { "Blogs" = [
+              "logical-replication/blogs/index.md",
+            ] },
+          { "Setup Guides" = [
+              "logical-replication/setup-guides/index.md",
+            ] },
+          { "SQL" = "logical-replication/sql/logical-replication-queries.md" },
         ] },
     ] },
   { "Indexes" = [
@@ -452,6 +454,7 @@ nav = [
   { "CLI_Tools" = [
       "command-line-tools/index.md",
       { "Rpg" = "command-line-tools/rpg/index.md" },
+      { "pg_ash" = "command-line-tools/pg-ash/index.md" },
       { "AI DBA Workbench" = "tools/ai-dba-workbench/index.md" },
       { "PgCenter" = "tools/pgcenter/pgcenter.md" },
       { "Pgcli" = [

@@ -1,3 +1,3 @@
-# SQL
+# Blogs
 
 Content coming soon.
