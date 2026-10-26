@@ -158,49 +158,49 @@
 
 ??? example "Inventory of all tables (schema, rows, size, replica identity)"
 
-``` sql title="replication_identity_inventory.sql"
--- replication_identity_inventory
-SELECT s.schemaname,
-       s.relname                                       AS tablename,
-       s.n_live_tup                                    AS row_count,
-       pg_size_pretty(pg_total_relation_size(s.relid)) AS table_size,
-       CASE
-         WHEN c.relreplident = 'f' THEN 'full'
-         WHEN c.relreplident = 'i' THEN 'index'
-         WHEN c.relreplident = 'n' THEN 'nothing'
-         WHEN EXISTS (SELECT 1 FROM pg_index i
-                      WHERE i.indrelid = s.relid AND i.indisprimary)
-              THEN 'default (primary key)'
-         ELSE 'default (NO PK, nothing logged)'
-       END                                             AS replica_identity,
-       EXISTS (SELECT 1 FROM pg_index i
-               WHERE i.indrelid = s.relid AND i.indisprimary) AS has_primary_key
-FROM pg_stat_user_tables s
-JOIN pg_class c ON c.oid = s.relid
-WHERE s.schemaname IN ('ARTL','CEASYS','IR','REF','lrarchive','lrmigration','lrsubmission')
-ORDER BY pg_total_relation_size(s.relid) DESC;
+    ``` sql title="replication_identity_inventory.sql"
+    -- replication_identity_inventory
+    SELECT s.schemaname,
+           s.relname                                       AS tablename,
+           s.n_live_tup                                    AS row_count,
+           pg_size_pretty(pg_total_relation_size(s.relid)) AS table_size,
+           CASE
+             WHEN c.relreplident = 'f' THEN 'full'
+             WHEN c.relreplident = 'i' THEN 'index'
+             WHEN c.relreplident = 'n' THEN 'nothing'
+             WHEN EXISTS (SELECT 1 FROM pg_index i
+                          WHERE i.indrelid = s.relid AND i.indisprimary)
+                  THEN 'default (primary key)'
+             ELSE 'default (NO PK, nothing logged)'
+           END                                             AS replica_identity,
+           EXISTS (SELECT 1 FROM pg_index i
+                   WHERE i.indrelid = s.relid AND i.indisprimary) AS has_primary_key
+    FROM pg_stat_user_tables s
+    JOIN pg_class c ON c.oid = s.relid
+    WHERE s.schemaname IN ('ARTL','CEASYS','IR','REF','lrarchive','lrmigration','lrsubmission')
+    ORDER BY pg_total_relation_size(s.relid) DESC;
 
--- schemaname |  tablename  | row_count | table_size |   replica_identity    | has_primary_key 
--- -------------+-------------+-----------+------------+-----------------------+-----------------
--- IR         | RENDITION   |  23030055 | 61 GB      | default (primary key) | t
--- CEASYS     | ROS_RECORDS |  14813072 | 11 GB      | default (primary key) | t
--- CEASYS     | DOCTABLE    |  44717125 | 6460 MB    | default (primary key) | t
--- IR         | DOCUMENT    |  26650663 | 3652 MB    | default (primary key) | t
--- IR         | APPLICATION |   4974537 | 1160 MB    | default (primary key) | t
-```
+    -- schemaname |  tablename  | row_count | table_size |   replica_identity    | has_primary_key 
+    -- -------------+-------------+-----------+------------+-----------------------+-----------------
+    -- IR         | RENDITION   |  23030055 | 61 GB      | default (primary key) | t
+    -- CEASYS     | ROS_RECORDS |  14813072 | 11 GB      | default (primary key) | t
+    -- CEASYS     | DOCTABLE    |  44717125 | 6460 MB    | default (primary key) | t
+    -- IR         | DOCUMENT    |  26650663 | 3652 MB    | default (primary key) | t
+    -- IR         | APPLICATION |   4974537 | 1160 MB    | default (primary key) | t
+    ```
 
 
 ??? example "Generate the REPLICA IDENTITY FULL statements for the 18 tables with no primary key"
 
-``` sql title="replication_identity_generate_statements.sql"
---replication_identity_generate_statements
-SELECT format('ALTER TABLE %I.%I REPLICA IDENTITY FULL;', n.nspname, c.relname) AS fix_statement
-FROM pg_class c
-JOIN pg_namespace n ON n.oid = c.relnamespace
-WHERE c.relkind = 'r'
-  AND n.nspname IN ('ARTL','CEASYS','IR','REF','lrarchive','lrmigration','lrsubmission')
-  AND c.relreplident = 'd'
-  AND NOT EXISTS (SELECT 1 FROM pg_index i
-                  WHERE i.indrelid = c.oid AND i.indisprimary)
-ORDER BY n.nspname, c.relname;
-```
+    ``` sql title="replication_identity_generate_statements.sql"
+    --replication_identity_generate_statements
+    SELECT format('ALTER TABLE %I.%I REPLICA IDENTITY FULL;', n.nspname, c.relname) AS fix_statement
+    FROM pg_class c
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE c.relkind = 'r'
+      AND n.nspname IN ('ARTL','CEASYS','IR','REF','lrarchive','lrmigration','lrsubmission')
+      AND c.relreplident = 'd'
+      AND NOT EXISTS (SELECT 1 FROM pg_index i
+                      WHERE i.indrelid = c.oid AND i.indisprimary)
+    ORDER BY n.nspname, c.relname;
+    ```
