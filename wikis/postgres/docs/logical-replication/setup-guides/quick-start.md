@@ -1,4 +1,4 @@
-
+# Quick Start
 
 ## Logical replication
    - Perform a failover to the secondary once it's caught up. 
@@ -26,7 +26,7 @@ You can set the **REPLICA IDENTITY** per table manually, either to an existing u
 
 This SQL can be used to find tables that are set to use the default replica identity but don't have a primary key (i.e., they don't have a valid replica identity after all):
 
-This SQL will tell you replication Identities for tables: [replication_indentiy](sql/replication_identity.sql)
+This SQL will tell you replication Identities for tables: [replication_indentiy](../sql/logical-replication-queries.md)
 
 
 ### OPTIONS
@@ -46,8 +46,8 @@ One thing to note is that tables might have unique indices already. In Postgres,
 
 This SQL will generate SQL to restart sequences for tables:
 
-(1) Reset to specific value: [specified_value](../sequences/reset_sequence_to_specified_value.sql)
+(1) Reset to specific value: [specified_value](../../sequences/reset-sequence-to-specified-value.md)
 
-(2) Reset to next value: [next_value](../sequences/reset_sequences_nextval.sql)
+(2) Reset to next value: [next_value](../../sequences/reset-sequences-nextval.md)
 
-(3) Reset to sequence ownership: [ownership](../sequences/reset_sequence_to_specified_value.sql)
+(3) Reset to sequence ownership: [ownership](../../sequences/fix-sequence-ownership.md)

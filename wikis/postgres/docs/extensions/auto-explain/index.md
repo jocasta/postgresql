@@ -4,3 +4,4 @@
 |---|---|
 | [Introduction](introduction.md) | What it does, How it's installed, Settings reference, Gotchas |
 | [Install](install.md) | Installation procedure |
+| [Blogs](blogs/index.md) | Imported blog posts |

@@ -137,10 +137,17 @@ div.mermaid,
   box-shadow: inset 0.15rem 0 0 var(--md-accent-fg-color);
 }
 
-/* First column is usually the key (option / field / column name): emphasise it */
+/* First column is usually the key (option / field / column name): emphasise it.
+   Text wraps at spaces; identifiers like max_wal_senders have none, so they stay on one line */
 .md-typeset table:not([class]) td:first-child {
   font-weight: 600;
-  white-space: nowrap;
+  min-width: 8rem;
+}
+
+/* The theme lets inline code break mid-word; in tables only break at spaces so names like
+   pg_replication_origin_status stay whole (the column widens, or the table scrolls, instead) */
+.md-typeset table:not([class]) code {
+  word-break: normal;
 }
 
 .md-typeset table:not([class]) td:first-child code {

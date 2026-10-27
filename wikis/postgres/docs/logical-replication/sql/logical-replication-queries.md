@@ -204,3 +204,48 @@
                       WHERE i.indrelid = c.oid AND i.indisprimary)
     ORDER BY n.nspname, c.relname;
     ```
+
+??? example "Postgres Logical Replication Tables Not Yet Ready"
+
+    ``` sql title="logical_replication_tables_not_yet_ready.sql"
+    -- subscriber: tables not yet ready
+    SELECT srrelid::regclass AS table_name, srsubstate, srsublsn
+    FROM pg_subscription_rel
+    WHERE srsubstate <> 'r';
+    ```
+
+??? example "Postgres Logical Replication Publication Tables"
+
+    ``` sql title="logical_replication_publication_tables.sql"
+    -- publisher: compare publication content vs subscriber tables (run on publisher)
+    SELECT pubname, schemaname, tablename FROM pg_publication_tables ORDER BY 1, 2, 3;
+    ```
+
+??? example "Postgres Long-Running Transactions Holding Back Slots"
+
+    ``` sql title="long_running_transactions_holding_back_slots.sql"
+    -- publisher: long-running transactions blocking slot creation / holding restart_lsn back
+    SELECT pid, usename, state, now() - xact_start AS xact_age, left(query, 80) AS query
+    FROM pg_stat_activity
+    WHERE xact_start IS NOT NULL
+    ORDER BY xact_start
+    LIMIT 10;
+    ```
+
+??? example "Postgres Logical Replication Apply Worker Lock Waits"
+
+    ``` sql title="logical_replication_apply_worker_lock_waits.sql"
+    -- subscriber: is the apply worker blocked by locks?
+    SELECT a.pid, a.backend_type, a.wait_event_type, a.wait_event, pg_blocking_pids(a.pid) AS blocked_by
+    FROM pg_stat_activity a
+    WHERE a.backend_type LIKE 'logical replication%';
+    ```
+
+??? example "Postgres Logical Replication Walsender Backends"
+
+    ``` sql title="logical_replication_walsender_backends.sql"
+    -- publisher: walsender backends for logical replication
+    SELECT pid, application_name, client_addr, backend_start, state, wait_event
+    FROM pg_stat_activity
+    WHERE backend_type = 'walsender';
+    ```
